@@ -1,0 +1,214 @@
+.offcanvas {
+    overflow-y: auto;
+    width: 20% !important;
+}
+
+@media screen and (max-width: 992px){
+    .offcanvas {
+        width: 200px !important;
+    }
+}
+
+.navbar {
+    background-color: slategray !important;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.vpravo-zarovnanie {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
+
+.vlavo-zarovnanie {
+    margin-left: 5%;
+}
+
+.dropdown-item {
+    background-color: lightsteelblue;
+    font-style: italic;
+
+}
+
+.dropdown-menu {
+    background-color: lightsteelblue;
+}
+
+.accordion-item {
+    background-color: slategrey;
+    color: white;
+}
+
+.accordion-button {
+    background-color: darkslategrey;
+    color: white;
+}
+
+/*hover prevzaty z bootstrapu*/
+.btn-hover {
+    border: none;
+    font-size: 16px;
+    margin: 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+.btn-hover:hover {opacity: 1}
+
+.ingrediencie {
+    border-left: 3px dashed black;
+    padding-left: 10px;
+    font-style: italic;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.img-recept {
+    width: 20rem;
+    height: 25rem;
+}
+
+
+.heart-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #ff2200;
+    color: white;
+}
+
+
+main {
+    margin-top: 75px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Helvetica, "Roboto Light", sans-serif;
+}
+@media print {
+    body {
+        font-family: serif;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bg-image {
+    height: 50%;
+    /*width: 100%;*/
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/*.img1 { background-image: url("images/bg1.jpg"); }
+.img2 { background-image: url("images/bg2.jpg"); }
+.img3 { background-image: url("images/bg3.jpg"); }
+.img4 { background-image: url("images/bg4.jpg"); }
+.img5 { background-image: url("images/bg1.jpg"); }
+.img6 { background-image: url("images/bg2.jpg"); }
+.img7 { background-image: url("images/bg3.jpg"); }
+.img8 { background-image: url("images/bg4.jpg"); }
+.img9 { background-image: url("images/bg1.jpg"); }
+.img10 { background-image: url("images/bg2.jpg"); }
+.img11 { background-image: url("images/bg3.jpg"); }
+.img12 { background-image: url("images/bg4.jpg"); }
+.img13 { background-image: url("images/bg1.jpg"); }
+.img14 { background-image: url("images/bg2.jpg"); }*/
+
+/*selektor prevzaty z w3schools*/
+.bg-text {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.3);
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    border: 10px solid white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    z-index: 2;
+    padding: 20px;
+    text-align: center;
+}
+
+/*zaklad prevzaty, pomenene tak aby to vyhovovalo*/
+.bg-text-secondary {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    border-left: 5px solid white;
+    position: absolute;
+    padding: 20px;
+    text-align: left;
+    left: 60%;
+}
+
+@media screen and (max-width: 900px) {
+    .bg-text {
+        font-size: 40px;
+    }
+    .bg-text-secondary {
+        font-size: 20px;
+    }
+    .bg-text-secondary-smaller {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bg-text {
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+    .bg-text-secondary {
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.bg-text-secondary-smaller {
+    font-size: 25px;
+}
+
+.bg-text1 {top: 110%;}
+.bg-text2 {top: 210%;}
+.bg-text3 {top: 310%;}
+.bg-text4 {top: 410%;}
+.bg-text5 {top: 510%;}
+.bg-text6 {top: 610%;}
+
+body {
+    background-color: lightslategray;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.rec-f {
+    padding-left: 20px;
+}
