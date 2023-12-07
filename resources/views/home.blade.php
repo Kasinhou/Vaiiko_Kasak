@@ -16,39 +16,6 @@
 <!--pozadie obrazky-->
 <div id="bgImageContainer"></div>
 
-<script>
-    let bgImageContainer = document.getElementById('bgImageContainer');
-
-    // Loop through the image URLs and create img elements
-    for (let i = 0; i < 14; i++) {
-        let divElement = document.createElement('div');
-        divElement.className = 'bg-image';
-        let imgElement = document.createElement('img');
-
-        // Set the src attribute to the current image URL
-        imgElement.src = "{{ asset('images/bg') }}" + (i % 4 + 1) + ".jpg";
-
-        // Append child
-        divElement.appendChild(imgElement);
-        bgImageContainer.appendChild(divElement);
-    }
-</script>
-{{--<div class="bg-image"><img src="{{ asset('images/bg1.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg2.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg3.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg4.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg1.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg2.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg3.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg4.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg1.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg2.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg3.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg4.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg1.jpg') }}"></div>
-<div class="bg-image"><img src="{{ asset('images/bg2.jpg') }}"></div>--}}
-
-
 <div class="bg-text">RECEPTY</div>
 
 <!--navbar-->
@@ -179,5 +146,21 @@
 
 
 </main>
+<script>
+    let bgImageContainer = document.getElementById('bgImageContainer');
+
+    for (let i = 0; i < 14; i++) {
+        let divElement = document.createElement('div');
+        divElement.className = 'bg-image';
+        let imgElement = document.createElement('img');
+
+
+        imgElement.src = "{{ asset('images/bg') }}" + (i % 4 + 1) + ".jpg";
+
+        // Append child
+        divElement.appendChild(imgElement);
+        bgImageContainer.appendChild(divElement);
+    }
+</script>
 </body>
 </html>

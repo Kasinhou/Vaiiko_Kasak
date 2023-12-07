@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Recept</title>
+    <title>Recepty</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
 </head>
 <body>
-
-<!--navbar-->
 <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
     <div class="container-fluid">
 
@@ -113,99 +113,87 @@
             </div>
         </div>
     </div>
-</nav>
+</nav><br>
 
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 ">
+            <h4 class="bold">PRIDAJ NOVÝ RECEPT</h4>
 
-<!--postup pripravy receptu, ingrediecie, info-->
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <h3 class="bold">Cookies</h3>
-                <br>
-                <div>
-                    <i class="bi bi-question-circle"></i> Obtiažnosť
+            @if(Session::get('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
                 </div>
-                <div>
-                    <i class="bi bi-clock-history"></i> Dĺžka prípravy
+            @endif
+
+            @if(Session::get('fail'))
+                <div class="alert alert-danger">
+                    {{ Session::get('fail') }}
                 </div>
-                <div>
-                    <i class="bi bi-globe-americas"></i> Pôvod jedla
-                </div><br>
+            @endif
+            <form action="addRecipe" method="post">
 
-                <h5 class="bold">Ingrediencie</h5>
-                <p class="ingrediencie">180 g polohrubá múka<br>
-                    130 g práškový cukor<br>
-                    125 g maslo<br>
-                    1 balíček vanilkový cukor<br>
-                    1 ks vajce<br>
-                    1 KL kypriaci prášok<br>
-                    150 g tmavá čokoláda<br>
-                </p>
-                <br>
+            @csrf
+                <div class="form-group">
+                    <label for="exampleInputName">Zadajte názov receptu</label>
+                    <input type="text" name="name" class="form-control" placeholder="Názov" value="{{ old('name') }}">
+                    <span style="color:red">@error('name'){{ $message }} @enderror</span>
+                </div>
 
-                <button type="button" class="btn btn-sm btn-outline-danger" onclick="toggleHeartAnimation(this)">
-                    <i class="bi bi-heart" ></i> Uložiť do obľúbených receptov
-                </button><br>
+                <div class="form-group">
+                    <label for="exampleInputInfo">Stručne popíšte recept</label>
+                    <input type="text" name="info" class="form-control" placeholder="Info">
+                </div>
 
-            </div>
-            <div class="col-12 col-lg-6">
-                <br><img class="image-container img-recept" src="{{ asset('images/cookie.jpg') }}" alt="nahlad receptu">
-            </div>
-        </div><br><hr>
+                <div class="form-group">
+                    <label for="exampleInputTime">Koľko času zaberie príprava</label>
+                    <input type="number" name="time" class="form-control" placeholder="Minúty">
+                </div>
 
-        <div class="row">
-            <div class="col">
-                <h5 class="bold">Postup prípravy</h5>
-            </div>
-            <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Fusce eget est dignissim, varius tellus sit amet, finibus orci.
-                Donec imperdiet leo at ex tincidunt hendrerit.<br>
-                2. Donec eleifend odio vel urna vestibulum, vitae lobortis mauris rhoncus.
-                Ut luctus nisl id luctus porttitor.<br>
-                3. Praesent hendrerit nulla et tellus dapibus, non convallis purus venenatis.
-                Nunc suscipit nisl sed tellus vestibulum tempor.<br>
-                4. Pellentesque egestas leo in justo sollicitudin, porta hendrerit velit ornare.
-                Fusce id justo aliquet, gravida est faucibus, euismod erat.
-                In et urna placerat, viverra mauris at, placerat quam.<br>
-                5. Ut vestibulum orci quis dui egestas facilisis.
-                Proin egestas odio sed lorem varius, euismod hendrerit mi aliquam.<br>
-                6. Praesent ornare arcu eget pretium egestas.
-                Vivamus porta sapien id justo scelerisque, sed posuere arcu ullamcorper.<br></p>
+                <div class="form-group">
+                    <label for="exampleInputOrigin">Odkiaľ pochádza recept</label>
+                    <input type="text" name="origin" class="form-control" placeholder="Pôvod">
+                </div>
+
+                <label for="exampleInputName">Vyberte obtiažnosť</label>
+                <select class="custom-select" name="difficulty">
+                    <option selected>Easy</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="masterchef">Masterchef</option>
+                </select>
+
+                <label for="exampleInputName">Vyberte typ</label>
+                <select class="custom-select" name="type">
+                    <option value="slovenska">slovenská</option>
+                    <option value="talianska">talianska</option>
+                    <option value="azijska">ázijská</option>
+                    <option value="grecka">grécka</option>
+                    <option value="spanielska">španielska</option>
+                    <option value="mexicka">mexická</option>
+                </select>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Ingrediencie</label>
+                    <textarea class="form-control" name="ingredients" rows="5">{{ old('ingredients') }}</textarea>
+                    <span style="color:red">@error('ingredients'){{ $message }} @enderror</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Príprava receptu</label>
+                    <textarea class="form-control" name="steps" rows="10">{{ old('steps') }}</textarea>
+                    <span style="color:red">@error('steps'){{ $message }} @enderror</span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block w-100">Pridaj</button>
+                </div>
+            </form>
         </div>
-        <!--pridat mozno nejake obrazky postupu-->
-
     </div>
-</main>
+</div>
 
 
-<!--paticka-->
-<footer class="d-flex flex-wrap  justify-content-between align-items-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-items-center rec-f">
-        <span class="mb-3 mb-md-0 text-body-secondary">Receptiky</span>
-    </div>
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex vpravo-zarovnanie">
-        <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter-x"></i></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook"></i></a></li>
-    </ul>
-</footer>
 
-<script>
-    function toggleHeartAnimation(button) {
-        let isClickedAlready = button.classList.contains('heartBeat');
-
-        //prida triedu ktoru treba
-        if (!isClickedAlready) {
-            button.classList.add('heartBeat');
-            button.classList.remove('heartBeatBack');
-
-        } else {
-            button.classList.add('heartBeatBack');
-            button.classList.remove('heartBeat');
-        }
-    }
-</script>
 </body>
 </html>
