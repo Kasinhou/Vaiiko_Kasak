@@ -52,4 +52,12 @@ class RecipeController extends Controller
 
         return response()->json(['message' => 'Recipe added successfully']);*/
     }
+
+    public function updateRecipe() {
+
+    }
+
+    public function deleteRecipe() {
+
+    }
 }

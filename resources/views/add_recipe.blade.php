@@ -142,34 +142,34 @@
 
                 <div class="form-group">
                     <label for="exampleInputInfo">Stručne popíšte recept</label>
-                    <input type="text" name="info" class="form-control" placeholder="Info">
+                    <input type="text" name="info" class="form-control" placeholder="Info" value="{{ old('info') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputTime">Koľko času zaberie príprava</label>
-                    <input type="number" name="time" class="form-control" placeholder="Minúty">
+                    <input type="number" name="time" class="form-control" placeholder="Minúty" value="{{ old('time') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputOrigin">Odkiaľ pochádza recept</label>
-                    <input type="text" name="origin" class="form-control" placeholder="Pôvod">
+                    <input type="text" name="origin" class="form-control" placeholder="Pôvod" value="{{ old('origin') }}">
                 </div>
 
                 <label for="exampleInputName">Vyberte obtiažnosť</label>
                 <select class="custom-select" name="difficulty">
-                    <option selected>Easy</option>
-                    <option value="advanced">Advanced</option>
-                    <option value="masterchef">Masterchef</option>
+                    <option selected value="easy" @if(old('difficulty') == 'easy') selected @endif>Easy</option>
+                    <option value="advanced" @if(old('difficulty') == 'advanced') selected @endif>Advanced</option>
+                    <option value="masterchef" @if(old('difficulty') == 'masterchef') selected @endif>Masterchef</option>
                 </select>
 
                 <label for="exampleInputName">Vyberte typ</label>
                 <select class="custom-select" name="type">
-                    <option value="slovenska">slovenská</option>
-                    <option value="talianska">talianska</option>
-                    <option value="azijska">ázijská</option>
-                    <option value="grecka">grécka</option>
-                    <option value="spanielska">španielska</option>
-                    <option value="mexicka">mexická</option>
+                    <option selected value="ina" @if(old('type') == 'ina') selected @endif>Iná</option>
+                    <option value="slovenska" @if(old('type') == 'slovenska') selected @endif>Slovenská</option>
+                    <option value="talianska" @if(old('type') == 'talianska') selected @endif>Talianska</option>
+                    <option value="azijska" @if(old('type') == 'azijska') selected @endif>Ázijská</option>
+                    <option value="grecka" @if(old('type') == 'grecka') selected @endif>Grécka</option>
+                    <option value="mexicka" @if(old('type') == 'mexicka') selected @endif>Mexická</option>
                 </select>
 
                 <div class="form-group">
@@ -184,6 +184,7 @@
                     <span style="color:red">@error('steps'){{ $message }} @enderror</span>
                 </div>
 
+                <br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block w-100">Pridaj</button>
                 </div>

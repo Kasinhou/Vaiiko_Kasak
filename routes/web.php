@@ -18,21 +18,13 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', function () { return view('home'); });
 
-Route::get('/recipes', function () {
-    return view('recipes');
-});
+Route::get('/recipes', function () { return view('recipes'); });
 
-Route::get('/recipe', function () {
-    return view('single_recipe');
-});
+Route::get('/recipe', function () { return view('single_recipe'); });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', function () { return view('login'); });
 
 /*Route::get('/add', function () {
     return view('add_recipe');
