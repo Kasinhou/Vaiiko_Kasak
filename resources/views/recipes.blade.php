@@ -62,11 +62,14 @@
     </div>
 
 
-
     <!--recepty-->
     <br><br>
     <div class="container mt-2">
-        <button type="button" class="btn btn-outline-info btn-lg bold vlavo-zarovnanie" onclick="moveToPridaj()">PRIDAŤ RECEPT</button>
+        @auth
+            <button type="button" class="btn btn-outline-info btn-lg bold vlavo-zarovnanie" onclick="moveToPridaj()">PRIDAŤ RECEPT</button>
+        @else
+            <p>Nemas pravo pridavat recepty, prihlas sa</p>
+        @endauth
         <h3 class="vpravo-zarovnanie bold">Ponuka receptov</h3>
         <div id="cardContainer" class="row g-2"></div>
 

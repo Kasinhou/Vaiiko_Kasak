@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', function () { return view('welcome'); });
 
-Route::get('/', function () { return view('home'); });
+Route::get('/home', function () { return view('home'); });
+Route::get('/home2', function () { return view('home2'); });
+Route::get('/l', function () { return view('/login_my'); });
+
 
 Route::get('/recipes', function () { return view('recipes'); });
 
@@ -33,3 +34,11 @@ Route::get('/login', function () { return view('login'); });
 Route::get('add', [RecipeController::class, 'index']);
 Route::post('addRecipe', [RecipeController::class, 'addRecipe']);
 
+
+Auth::routes();
+
+/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
+
+/*Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
