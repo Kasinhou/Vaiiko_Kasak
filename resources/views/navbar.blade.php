@@ -7,15 +7,34 @@
         </button>
 
         <div class="flex-shrink-0 dropstart ms-2 vpravo-zarovnanie profil">
-            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle"></i>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item" href="login">Prihlásiť sa</a></li>
-                <li><a class="dropdown-item" href="#">Profil</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Odhlásiť sa</a></li>
-            </ul>
+            @if (Route::has('login'))
+                @auth
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-check"></i>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <ul class="dropdown-menu text-small shadow">
+                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Odhlásiť sa</a>
+                            <form id="logout-form" action="{{ route('logout', ['url' => 'home']) }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                @else
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow">
+                        <li><a class="dropdown-item" href="login">Prihlásiť sa</a></li>
+                        <li><a class="dropdown-item" href="register">Registrovať sa</a></li>
+                    </ul>
+                @endauth
+            @endif
         </div>
 
         <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel">
@@ -76,19 +95,20 @@
                                 Tipy
                             </button>
                         </li>
-
-                        <li>
-                            <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-                                Obľúbené
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="d-inline-block bg-warning rounded-circle p-1"></span>
-                                Moje recepty
-                            </button>
-                        </li>
+                        @auth
+                            <li>
+                                <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+                                    Obľúbené
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="d-inline-block bg-warning rounded-circle p-1"></span>
+                                    Moje recepty
+                                </button>
+                            </li>
+                        @endauth
                         <li>
                             <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="d-inline-block bg-secondary rounded-circle p-1"></span>
