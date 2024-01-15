@@ -77,9 +77,12 @@
                     <input type="text" name="type" class="form-control" placeholder="Typ" value="{{ old('type') }}">
                 </div>
 
-                {{--poznamky--}}
-
-                {{--obrazok--}}
+                <div class="input-group">
+                    <div class="custom-file">
+                        <label class="custom-file-label">Vyber obrázok</label>
+                        <input type="file" name="imgpath" class="custom-file-input">
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Ingrediencie</label>
