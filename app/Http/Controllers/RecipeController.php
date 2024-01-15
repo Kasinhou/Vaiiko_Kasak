@@ -12,6 +12,10 @@ class RecipeController extends Controller
         return view('add_recipe');
     }
 
+    /*function my() {
+        return view('my_recipes');
+    }*/
+
     public function addRecipe(Request $request)
     {
         //return $request->input();

@@ -14,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
-
+Route::get('/', function () { return view('home'); });
 Route::get('/home', function () { return view('home'); });
-Route::get('/home2', function () { return view('home2'); });
-Route::get('/l', function () { return view('login_my'); });
-
 
 Route::get('/recipes', function () { return view('recipes'); });
+
+Route::get('/my_recipes', function () { return view('my_recipes'); });
+Route::get('/favourites', function () { return view('favourites'); });
 
 Route::get('/recipe', function () { return view('single_recipe'); });
 
@@ -31,6 +30,8 @@ Route::get('/login', function () { return view('login'); });
     return view('add_recipe');
 });*/
 
+
+//Route::get('my_recipes', [RecipeController::class, 'my']);
 Route::get('add', [RecipeController::class, 'index']);
 Route::post('addRecipe', [RecipeController::class, 'addRecipe']);
 

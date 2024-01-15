@@ -9,7 +9,7 @@
         <div class="flex-shrink-0 dropstart ms-2 vpravo-zarovnanie profil">
             @if (Route::has('login'))
                 @auth
-                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle bold" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-check"></i>
                         {{ Auth::user()->name }}
                     </a>
@@ -97,16 +97,18 @@
                         </li>
                         @auth
                             <li>
-                                <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="btn text-white btn-hover" href="/favourites">
                                     <span class="d-inline-block bg-danger rounded-circle p-1"></span>
                                     Obľúbené
-                                </button>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="btn text-white btn-hover" href="/my_recipes">
                                     <span class="d-inline-block bg-warning rounded-circle p-1"></span>
                                     Moje recepty
-                                </button>
+                                </a>
+                                {{--<button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>--}}
                             </li>
                         @endauth
                         <li>

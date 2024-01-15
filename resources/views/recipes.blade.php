@@ -103,9 +103,11 @@
                         </ul>
                         <div class="card-body">
                             <a href="recipe" class="card-link">Prezrieť</a>
+                            @auth
                             <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
                                 <i class="bi bi-heart"></i>
                             </button>
+                            @endauth
                         </div>
                     </div>`;
 
