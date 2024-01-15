@@ -14,7 +14,7 @@
 @include('navbar')
 
 <main>
-
+    <h3 class="vpravo-zarovnanie bold">Obľúbené</h3><br>
 
 </main>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CousineController;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,9 @@ Route::get('/login', function () { return view('login'); });
 //Route::get('my_recipes', [RecipeController::class, 'my']);
 Route::get('add', [RecipeController::class, 'index']);
 Route::post('addRecipe', [RecipeController::class, 'addRecipe']);
+Route::get('/insert', [CousineController::class, 'insertDefaultData']);
 
+//Route::get('/delete', [RecipeController::class, 'deleteRecipe']);
 
 Auth::routes();
 

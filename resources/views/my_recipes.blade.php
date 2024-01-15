@@ -16,24 +16,6 @@
 <main>
     <h3 class="vpravo-zarovnanie bold">Moje recepty</h3><br>
     <div id="myContainer" class="row g-2"></div>
-
-    {{--<div class="col-md-6 mb-3">
-        <div class="card mx-auto">
-            <div class="row g-0">
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <img src="{{ asset('images/cookie.jpg') }}" class="img-fluid rounded-start" alt="obrazok receptu">
-                </div>
-            </div>
-        </div>
-    </div>--}}
-
 </main>
 
 @include('foot')
@@ -64,7 +46,7 @@
                                         <small class="text-body-secondary">Last updated 3 mins ago</small>
 
                                         <div class="d-flex gap-2">
-                                            <button type="button" class="btn btn-outline-primary">Prezrieť</button>
+                                            <button type="button" class="btn btn-outline-primary" onclick="goToRecipe()">Prezrieť</button>
                                             <button type="button" class="btn btn-outline-success">Upraviť</button>
                                             <button type="button" class="btn btn-outline-danger">Vymazať</button>
                                         </div>
@@ -79,4 +61,9 @@
 
         cardContainer.appendChild(divElement);
     }
+
+    function goToRecipe() {
+        window.location.href = '/recipe';
+    }
+
 </script>

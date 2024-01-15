@@ -57,12 +57,12 @@
 
                 <label for="exampleInputName">Vyberte obtiažnosť</label>
                 <select class="custom-select" name="difficulty">
-                    <option selected value="easy" @if(old('difficulty') == 'easy') selected @endif>Easy</option>
-                    <option value="advanced" @if(old('difficulty') == 'advanced') selected @endif>Advanced</option>
+                    <option selected value="začiatočník" @if(old('difficulty') == 'začiatočník') selected @endif>Začiatočník</option>
+                    <option value="pokročilý" @if(old('difficulty') == 'pokročilý') selected @endif>Pokročilý</option>
                     <option value="masterchef" @if(old('difficulty') == 'masterchef') selected @endif>Masterchef</option>
                 </select>
 
-                <label for="exampleInputName">Vyberte typ</label>
+                <label for="exampleInputName">Kuchyňa</label>
                 <select class="custom-select" name="type">
                     <option selected value="ina" @if(old('type') == 'ina') selected @endif>Iná</option>
                     <option value="slovenska" @if(old('type') == 'slovenska') selected @endif>Slovenská</option>
@@ -71,6 +71,15 @@
                     <option value="grecka" @if(old('type') == 'grecka') selected @endif>Grécka</option>
                     <option value="mexicka" @if(old('type') == 'mexicka') selected @endif>Mexická</option>
                 </select>
+
+                <div class="form-group">
+                    <label for="exampleInputType">Typ jedla (večera/vegánske/dezert/...)</label>
+                    <input type="text" name="type" class="form-control" placeholder="Typ" value="{{ old('type') }}">
+                </div>
+
+                {{--poznamky--}}
+
+                {{--obrazok--}}
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Ingrediencie</label>
@@ -82,6 +91,11 @@
                     <label for="exampleFormControlTextarea1">Príprava receptu</label>
                     <textarea class="form-control" name="steps" rows="10">{{ old('steps') }}</textarea>
                     <span style="color:red">@error('steps'){{ $message }} @enderror</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Dodatočné poznámky k receptu</label>
+                    <textarea class="form-control" name="addinfo" rows="3">{{ old('addinfo') }}</textarea>
                 </div>
 
                 <br>

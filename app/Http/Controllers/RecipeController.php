@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
@@ -25,15 +26,23 @@ class RecipeController extends Controller
             'steps'=>'required'
         ]);
 
-        $query = DB::table('recipes')->insert([
+        //$user_id = Auth::id();
+        //Recipe::create DB::table('recipes')->insert
+
+        $query = Recipe::create([
             'name'=>$request->input('name'),
             'info'=>$request->input('info'),
             'time'=>$request->input('time'),
             'origin'=>$request->input('origin'),
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),
+            'addinfo'=>$request->input('addinfo'),
+            'imgpath'=>$request->input('imgpath'),
+            'likes'=>0,
             'ingredients'=>$request->input('ingredients'),
-            'steps'=>$request->input('steps')
+            'steps'=>$request->input('steps'),
+            'user_id'=>Auth::id(),
+            'cousine_id'=>$request->input('cousine_id'),
         ]);
 
         if ($query) {
@@ -62,6 +71,7 @@ class RecipeController extends Controller
     }
 
     public function deleteRecipe() {
-
+        Recipe::where('info', null)->delete();
+        return back()->with('success', 'Recepty zmazane');
     }
 }

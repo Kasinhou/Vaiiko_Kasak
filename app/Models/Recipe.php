@@ -6,7 +6,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Recipe extends Authenticatable
 {
-    protected string $name;
+    public $timestamps = true;
+    protected $table = 'recipes';
+    protected $fillable =
+        ['name', 'info', 'time', 'origin', 'difficulty',
+            'type', 'addinfo', 'imgpath', 'likes', 'ingredients',
+            'steps', 'user_id', 'cousine_id'];
+
+
+    /*protected string $name;
     protected string $info;
     protected int $time;
     protected string $origin;
@@ -94,7 +102,7 @@ class Recipe extends Authenticatable
     public function setSteps(string $steps): void
     {
         $this->steps = $steps;
-    }
+    }*/
 
     //doplnit dalsie funkcie
 }
