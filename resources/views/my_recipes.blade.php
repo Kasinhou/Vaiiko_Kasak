@@ -38,6 +38,10 @@
 
 @include('foot')
 
+</body>
+</html>
+
+
 <script>
     let cardContainer = document.getElementById('myContainer');
 
@@ -50,11 +54,20 @@
                         <div class="row g-0">
                             <div class="col-md-11">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title">Card title</h5>
+                                        <a class="likes mb-2">XYZ <i class="bi bi-heart-fill likes bold"></i></a>
+                                    </div>
+
                                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <div class="bottom-card">
-                                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                                        <a href="recipe" class="card-link">Zobraziť celý recept</a>
+                                    <div class="bottom-card d-flex justify-content-between align-items-center">
+                                        <small class="text-body-secondary">Last updated 3 mins ago</small>
+
+                                        <div class="d-flex gap-2">
+                                            <button type="button" class="btn btn-outline-primary">Prezrieť</button>
+                                            <button type="button" class="btn btn-outline-success">Upraviť</button>
+                                            <button type="button" class="btn btn-outline-danger">Vymazať</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -67,5 +80,3 @@
         cardContainer.appendChild(divElement);
     }
 </script>
-</body>
-</html>

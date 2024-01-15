@@ -76,7 +76,11 @@
     height: 25rem;
 }
 
-
+.likes {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
 
 .heart-right {
     position: absolute;
