@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('home'); });
 Route::get('/home', function () { return view('home'); });
 
-Route::get('/recipes', function () { return view('recipes'); });
+//Route::get('/recipes', function () { return view('recipes'); });
 
 Route::get('/my_recipes', function () { return view('my_recipes'); });
 Route::get('/favourites', function () { return view('favourites'); });
@@ -27,10 +27,6 @@ Route::get('/recipe', function () { return view('single_recipe'); });
 
 Route::get('/login', function () { return view('login'); });
 
-/*Route::get('/add', function () {
-    return view('add_recipe');
-});*/
-
 
 //Route::get('my_recipes', [RecipeController::class, 'my']);
 Route::get('add', [RecipeController::class, 'index']);
@@ -38,6 +34,8 @@ Route::get('add', [CousineController::class, 'getCousines']);
 
 Route::post('addRecipe', [RecipeController::class, 'addRecipe']);
 Route::get('/insert', [CousineController::class, 'insertDefaultData']);
+
+Route::get('/recipes/{cousine_id}', [RecipeController::class, 'getCousinesRecipes'])->name('cousineRecipes');
 
 //Route::get('/delete', [RecipeController::class, 'deleteRecipe']);
 

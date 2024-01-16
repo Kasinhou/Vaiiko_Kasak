@@ -61,19 +61,16 @@
                                 <span class="d-inline-block bg-success rounded-circle p-1"></span>
                                 Kuchyne
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="recipes">mexická</a></li>
-                                <li><a class="dropdown-item" href="recipes">čínska</a></li>
-                                <li><a class="dropdown-item" href="recipes">slovenská</a></li>
-                                <li><a class="dropdown-item" href="recipes">talianská</a></li>
-                                <li><a class="dropdown-item" href="recipes">indická</a></li>
-                                <li><a class="dropdown-item" href="recipes">grécka</a></li>
-                                <li><a class="dropdown-item" href="recipes">španielska</a></li>
-                                <li><a class="dropdown-item" href="recipes">francúzska</a></li>
-                                <li><a class="dropdown-item" href="recipes">iné...</a></li>
-                            </ul>
+                            @if(isset($cousines))
+                                <ul class="dropdown-menu">
+                                    @foreach($cousines as $cousine)
+                                        <li><a class="dropdown-item" href="{{ route('cousineRecipes',
+                                        ['cousine_id' => $cousine->id]) }}">{{ $cousine->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </li>
-                        <li class="dropdown">
+                        {{--<li class="dropdown">
                             <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="d-inline-block bg-primary rounded-circle p-1"></span>
                                 Jedlá
@@ -81,14 +78,10 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="recipes">raňajky</a></li>
                                 <li><a class="dropdown-item" href="recipes">hlavné jedlá</a></li>
-                                <li><a class="dropdown-item" href="recipes">polievky</a></li>
-                                <li><a class="dropdown-item" href="recipes">dezerty</a></li>
-                                <li><a class="dropdown-item" href="recipes">zdravé</a></li>
-                                <li><a class="dropdown-item" href="recipes">večere</a></li>
                                 <li><a class="dropdown-item" href="recipes">vegánske</a></li>
                                 <li><a class="dropdown-item" href="recipes">iné...</a></li>
                             </ul>
-                        </li>
+                        </li>--}}
                         <li>
                             <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="d-inline-block bg-info rounded-circle p-1"></span>

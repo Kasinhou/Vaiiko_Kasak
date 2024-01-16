@@ -18,13 +18,14 @@ class CousineController extends Controller
     public function insertDefaultData()
     {
         /*Cousine::create([
-            'name' => 'Mexická',
-            'info' => 'Mexická kuchyňa si získava obľubu pre svoju rýchlu prípravu, jednoduché zloženie, aj keď niekedy ťažkú prípravu, no najmä pre hodnotu výživovú, ale aj kultúrnu. Úplne základnými potravinami, o ktorých si tu budeme hovoriť aj podrobnejšie informácie sú: cukrová trstina, chilli papriky, strukoviny (jednoznačne nezabudnuteľná fazuľka rôznej farby a veľkosti), a rajčiny, plodiny starých Mayov a Aztékov.
-                        Mexická kuchyňa predstavu už z názvu územie štátu pre ktoré je aj charakteristickým znakom vo svete. Bežne na dedine sa celkovo kuchyňa a príprava jedál spolieha na prítomnosť zeleniny a tej je tu dostatok. Pestuje sa tu minimálne 50 druhov fazulí a 150 druhov papričiek, pričom každá má svoju chuť, tvar, veľkosť, ale aj použitie. Práve tieto dve posledné plodiny robia zrejme mexickú kuchyňu mexickou a tak charakteristickou.
-                        Musíme však spomenúť aj jeden prvok, či vec bez ktorej klasická mexická kuchyňa ani nemôže byť klasickou. Tortilla. Z nekysnutého cesta okrúhla kukuričná placka, ktorú m Mexičania používajú ako tanier, nádoba, ale aj ako pečivo, niekedy naberačka omáčok a podobne.',
-            'img_path' => 'public/images/mexicka.webp',
-            ]);*/
+            'name' => 'Talianska',
+            'info' => 'Taliansko je vďaka bohatej histórií, rozmanitej kultúre, unikátnej architektúre i chutnej kuchyni obľúbenou európskou destináciou. Svojimi jedinečnými kulinárskymi špecialitami si Taliansko získalo srdcia mnohých cestovateľov. Talianska kuchyňa sa teší celosvetovej obľube a je známa kombináciou výrazných chutí a čerstvých ingrediencií ako je olivový olej, paradajky, cesnak, syr a cestoviny.
 
-        return 'Default data inserted successfully.';
+Medzi obľúbené jedlá patria lasagne, špagety bolognese, pizza, rizoto i polievka minestrone. Milovníkov sladkého poteší zmrzlina, tiramisu či cannoli.
+Talianske pokrmy sa vyznačujú používaním čerstvých surovín ako sú syr, cesnak, paradajky či olivový olej s dôrazom na ich výrazné prírodné chute. Radosť z varenia a pečenia, ktorá je pre Talianov typická, sa odráža vo všetkých druhoch slaných a sladkých pochúťok.',
+            'img_path' => 'public/images/talianska.webp',
+            ]);
+
+        return 'Default data inserted successfully.';*/
     }
 }

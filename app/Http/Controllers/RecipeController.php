@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cousine;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,21 @@ class RecipeController extends Controller
         $this->middleware('auth');
     }
 
+    //vsetky recepty zoberie a
     function index() {
-        return view('add_recipe');
+        $recipes = Recipe::all();
+
+        return view('add_recipe', compact('recipes'));
+        //return view('add_recipe');
+    }
+
+    public function getCousinesRecipes($cousine_id)
+    {
+        $cousine = Cousine::find($cousine_id);
+        $recipes = Recipe::where('cousine_id', $cousine_id)->get();
+
+        //mozno navbar namiesto recipes
+        return view('recipes', compact('recipes', 'cousine'));
     }
 
     /*function my() {

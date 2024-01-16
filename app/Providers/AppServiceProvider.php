@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //zdielanie dat s navbarom
+        View::composer('navbar', function ($view) {
+            $view->with('cousines', \App\Models\Cousine::all());
+        });
     }
 }

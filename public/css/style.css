@@ -23,6 +23,12 @@
     margin-right: 2%;
 }
 
+.vpravo-zarovnanie-nazov {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 7%;
+}
+
 .vlavo-zarovnanie {
     display: flex;
     justify-content: flex-start;
