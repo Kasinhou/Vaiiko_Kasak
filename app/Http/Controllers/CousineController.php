@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class CousineController extends Controller
 {
+    public function getCousines()
+    {
+        $cousines = Cousine::all();
+
+        return view('add_recipe', compact('cousines'));
+    }
+
     public function insertDefaultData()
     {
         /*Cousine::create([

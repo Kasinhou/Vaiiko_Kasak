@@ -62,15 +62,24 @@
                     <option value="masterchef" @if(old('difficulty') == 'masterchef') selected @endif>Masterchef</option>
                 </select>
 
-                <label for="exampleInputName">Kuchyňa</label>
-                <select class="custom-select" name="type">
-                    <option selected value="ina" @if(old('type') == 'ina') selected @endif>Iná</option>
-                    <option value="slovenska" @if(old('type') == 'slovenska') selected @endif>Slovenská</option>
-                    <option value="talianska" @if(old('type') == 'talianska') selected @endif>Talianska</option>
-                    <option value="azijska" @if(old('type') == 'azijska') selected @endif>Ázijská</option>
-                    <option value="grecka" @if(old('type') == 'grecka') selected @endif>Grécka</option>
-                    <option value="mexicka" @if(old('type') == 'mexicka') selected @endif>Mexická</option>
-                </select>
+                @if(isset($cousines))
+                    <label for="exampleInputName">Kuchyňa</label>
+                    <select class="custom-select" name="type">
+                        @foreach($cousines as $cousine)
+                            <option value="{{ $cousine->id }}" @if(old('type') == $cousine->id) selected @endif>
+                                {{ $cousine->name }}
+                            </option>
+                        @endforeach
+                        {{--<option selected value="ina" @if(old('type') == 'ina') selected @endif>Iná</option>
+                        <option value="slovenska" @if(old('type') == 'slovenska') selected @endif>Slovenská</option>
+                        <option value="talianska" @if(old('type') == 'talianska') selected @endif>Talianska</option>
+                        <option value="azijska" @if(old('type') == 'azijska') selected @endif>Ázijská</option>
+                        <option value="grecka" @if(old('type') == 'grecka') selected @endif>Grécka</option>
+                        <option value="mexicka" @if(old('type') == 'mexicka') selected @endif>Mexická</option>--}}
+                    </select>
+                @else
+                    <a>Not defined cousines</a>
+                @endif
 
                 <div class="form-group">
                     <label for="exampleInputType">Typ jedla (večera/vegánske/dezert/...)</label>

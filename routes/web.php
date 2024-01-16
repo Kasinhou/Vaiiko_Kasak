@@ -34,6 +34,8 @@ Route::get('/login', function () { return view('login'); });
 
 //Route::get('my_recipes', [RecipeController::class, 'my']);
 Route::get('add', [RecipeController::class, 'index']);
+Route::get('add', [CousineController::class, 'getCousines']);
+
 Route::post('addRecipe', [RecipeController::class, 'addRecipe']);
 Route::get('/insert', [CousineController::class, 'insertDefaultData']);
 
