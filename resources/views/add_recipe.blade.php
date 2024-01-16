@@ -64,17 +64,13 @@
 
                 @if(isset($cousines))
                     <label for="exampleInputName">Kuchyňa</label>
-                    <select class="custom-select" name="type">
+                    <select class="custom-select" name="cousine_id">
                         @foreach($cousines as $cousine)
-                            <option value="{{ $cousine->id }}" @if(old('type') == $cousine->id) selected @endif>
+                            <option value="{{ $cousine->id }}" @if(old('cousine_id') == $cousine->id) selected @endif>
                                 {{ $cousine->name }}
                             </option>
                         @endforeach
                         {{--<option selected value="ina" @if(old('type') == 'ina') selected @endif>Iná</option>
-                        <option value="slovenska" @if(old('type') == 'slovenska') selected @endif>Slovenská</option>
-                        <option value="talianska" @if(old('type') == 'talianska') selected @endif>Talianska</option>
-                        <option value="azijska" @if(old('type') == 'azijska') selected @endif>Ázijská</option>
-                        <option value="grecka" @if(old('type') == 'grecka') selected @endif>Grécka</option>
                         <option value="mexicka" @if(old('type') == 'mexicka') selected @endif>Mexická</option>--}}
                     </select>
                 @else

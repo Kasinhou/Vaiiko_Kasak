@@ -32,6 +32,13 @@ class RecipeController extends Controller
         return view('recipes', compact('recipes', 'cousine'));
     }
 
+    public function showRecipeCards($cousine_id)
+    {
+        $recipes = Recipe::where('cousine_id', $cousine_id)->get();
+
+        return response()->json(['recipes' => $recipes]);
+    }
+
     /*function my() {
         return view('my_recipes');
     }*/
@@ -51,7 +58,7 @@ class RecipeController extends Controller
         $query = Recipe::create([
             'name'=>$request->input('name'),
             'info'=>$request->input('info'),
-            'time'=>$request->input('time'),
+            'time'=>abs($request->input('time')),
             'origin'=>$request->input('origin'),
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),

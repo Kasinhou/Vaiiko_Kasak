@@ -37,12 +37,8 @@ Route::get('/insert', [CousineController::class, 'insertDefaultData']);
 
 Route::get('/recipes/{cousine_id}', [RecipeController::class, 'getCousinesRecipes'])->name('cousineRecipes');
 
+Route::get('/getRecipesAjax/{cousine_id}', [RecipeController::class, 'showRecipeCards']);
+
 //Route::get('/delete', [RecipeController::class, 'deleteRecipe']);
 
 Auth::routes();
-
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
-
-/*Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/

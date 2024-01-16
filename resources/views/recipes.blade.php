@@ -83,38 +83,76 @@
     @include('foot')
 
     <script>
-        let cardContainer = document.getElementById('cardContainer');
+        document.addEventListener('DOMContentLoaded', function () {
+            let cardContainer = document.getElementById('cardContainer');
+            let cousineID = {{ $cousine->id }};
 
-        //doplnit pocet kolko ich je, z databazy
-        for (let i = 0; i < 15; i++) {
-            let divElement = document.createElement('div');
-            divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+            fetch(`/getRecipesAjax/${cousineID}`)
+                .then(response => response.json())
+                .then(data => { //prejde vsetky
+                    data.recipes.forEach(recipe => {
+                        let divElement = document.createElement('div');
+                        divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
 
-            divElement.innerHTML = `
-                        <div class="card">
-                            <img src="{{ asset('images/cookie.jpg') }}" class="card-img-top" alt="Konkretny recept">
+                        divElement.innerHTML = `
+                            <div class="card">
+                                <img src="{{ asset('images/cookie.jpg') }}" class="card-img-top" alt="Konkretny recept">
 
-                            <div class="card-body">
-                                <h5 class="card-title bold">Názov receptu</h5>
-                                <p class="card-text italic">Krátka veta o jedle, na zaujatie používateľa.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><i class="bi bi-question-circle"></i> Obtiažnosť</li>
-                                <li class="list-group-item"><i class="bi bi-clock-history"></i> Dĺžka prípravy</li>
-                                <li class="list-group-item"><i class="bi bi-globe-americas"></i> Pôvod jedla</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="recipe" class="card-link">Prezrieť</a>
-                                @auth
-                                <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                                @endauth
-                            </div>
-                        </div>`;
+                                <div class="card-body">
+                                    <h5 class="card-title bold">Názov receptu</h5>
+                                    <p class="card-text italic">Krátka veta o jedle, na zaujatie používateľa.</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><i class="bi bi-question-circle"></i> Obtiažnosť</li>
+                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> Dĺžka prípravy</li>
+                                    <li class="list-group-item"><i class="bi bi-globe-americas"></i> Pôvod jedla</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="recipe" class="card-link">Prezrieť</a>
+                                    @auth
+                                        <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
+                                    @endauth
+                                </div>
+                            </div>`;
 
-            cardContainer.appendChild(divElement);
-        }
+                        cardContainer.appendChild(divElement);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+
+
+            /*for (let i = 0; i < 15; i++) {
+                let divElement = document.createElement('div');
+                divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+
+                divElement.innerHTML = `
+                            <div class="card">
+                                <img src="{{ asset('images/cookie.jpg') }}" class="card-img-top" alt="Konkretny recept">
+
+                                <div class="card-body">
+                                    <h5 class="card-title bold">Názov receptu</h5>
+                                    <p class="card-text italic">Krátka veta o jedle, na zaujatie používateľa.</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><i class="bi bi-question-circle"></i> Obtiažnosť</li>
+                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> Dĺžka prípravy</li>
+                                    <li class="list-group-item"><i class="bi bi-globe-americas"></i> Pôvod jedla</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="recipe" class="card-link">Prezrieť</a>
+                                    @auth
+                                    <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                    @endauth
+                                </div>
+                            </div>`;
+
+                cardContainer.appendChild(divElement);
+            }*/
+        });
 
 
         function toggleHeartAnimation(button) {
