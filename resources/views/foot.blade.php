@@ -1,7 +1,7 @@
 <!--paticka-->
 <footer class="d-flex flex-wrap  justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center rec-f">
-        <a class="mb-3 mb-md-0 text-body-secondary" href="{{ url('/') }}">Receptiky</a>
+        <a class="mb-3 mb-md-0 text-body-secondary" href="{{ url('/home') }}">Receptiky</a>
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex vpravo-zarovnanie">

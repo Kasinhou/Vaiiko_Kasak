@@ -25,42 +25,56 @@
 
 
 <script>
-    let cardContainer = document.getElementById('myContainer');
+    document.addEventListener('DOMContentLoaded', function () {
+        let cardContainer = document.getElementById('myContainer');
 
-    for (let i = 0; i < 7; i++) {
-        let divElement = document.createElement('div');
-        //divElement.className = '';
+        fetch(`/getMyRecipes`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.recipes.length > 0) { //ci uz uzivatel nejake pridal
+                    data.recipes.forEach(recipe => {
+                        let divElement = document.createElement('div');
+                        let infoCheck = recipe.info ? recipe.info : "-";
+                        const updated = new Date(recipe.updated_at);
+                        const days = Math.floor((new Date() - updated) / (3600000 * 24));
 
-        divElement.innerHTML = `
-                    <div class="card mx-4">
-                        <div class="row g-0">
-                            <div class="col-md-11">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title">Card title</h5>
-                                        <a class="likes mb-2">XYZ <i class="bi bi-heart-fill likes bold"></i></a>
-                                    </div>
+                        divElement.innerHTML = `
+                            <div class="card mx-4">
+                                <div class="row g-0">
+                                    <div class="col-md-11">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h5 class="card-title">${recipe.name}</h5>
+                                                <a class="likes mb-2">${recipe.likes} <i class="bi bi-heart-fill likes bold"></i></a>
+                                            </div>
 
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <div class="bottom-card d-flex justify-content-between align-items-center">
-                                        <small class="text-body-secondary">Last updated 3 mins ago</small>
+                                            <p class="card-text">${infoCheck}</p>
+                                            <div class="bottom-card d-flex justify-content-between align-items-center">
+                                                <small class="text-body-secondary">Naposledy upravené ${days} dní dozadu.</small>
 
-                                        <div class="d-flex gap-2">
-                                            <button type="button" class="btn btn-outline-primary" onclick="goToRecipe()">Prezrieť</button>
-                                            <button type="button" class="btn btn-outline-success">Upraviť</button>
-                                            <button type="button" class="btn btn-outline-danger">Vymazať</button>
+                                                <div class="d-flex gap-2">
+                                                    <button type="button" class="btn btn-outline-primary" onclick="goToRecipe()">Prezrieť</button>
+                                                    <button type="button" class="btn btn-outline-success">Upraviť</button>
+                                                    <button type="button" class="btn btn-outline-danger">Vymazať</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-1">
+                                        <img src="{{ asset('images/cookie.jpg') }}" class="img-fluid rounded-start" alt="obrazok receptu">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-1">
-                                <img src="{{ asset('images/cookie.jpg') }}" class="img-fluid rounded-start" alt="obrazok receptu">
-                            </div>
-                        </div>
-                    </div>`;
+                            </div>`;
 
-        cardContainer.appendChild(divElement);
-    }
+                        cardContainer.appendChild(divElement);
+                    });
+                }
+                else {
+                    cardContainer.innerHTML = `<p>Zatiaľ ste nepridali žiadne recepty. Podeľte sa s ostatnými o vaše kuchárske umenie.</p>`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
     function goToRecipe() {
         window.location.href = '/recipe';

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('home'); });
+//Route::get('/', function () { return view('home'); });
 Route::get('/home', function () { return view('home'); });
 
 //Route::get('/recipes', function () { return view('recipes'); });
@@ -37,7 +37,10 @@ Route::get('/insert', [CousineController::class, 'insertDefaultData']);
 
 Route::get('/recipes/{cousine_id}', [RecipeController::class, 'getCousinesRecipes'])->name('cousineRecipes');
 
-Route::get('/getRecipesAjax/{cousine_id}', [RecipeController::class, 'showRecipeCards']);
+Route::get('/getRecipesCards/{cousine_id}', [RecipeController::class, 'showRecipeCards']);
+
+Route::get('/getMyRecipes', [RecipeController::class, 'showMyRecipes']);
+
 
 //Route::get('/delete', [RecipeController::class, 'deleteRecipe']);
 

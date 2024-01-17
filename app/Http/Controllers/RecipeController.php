@@ -39,6 +39,13 @@ class RecipeController extends Controller
         return response()->json(['recipes' => $recipes]);
     }
 
+    public function showMyRecipes() {
+        $user_id = Auth::id();
+        $recipes = Recipe::where('user_id', $user_id)->get();
+
+        return response()->json(['recipes' => $recipes]);
+    }
+
     /*function my() {
         return view('my_recipes');
     }*/
@@ -63,6 +70,7 @@ class RecipeController extends Controller
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),
             'addinfo'=>$request->input('addinfo'),
+
             'imgpath'=>$request->input('imgpath'),
             'likes'=>0,
             'ingredients'=>$request->input('ingredients'),
@@ -97,7 +105,7 @@ class RecipeController extends Controller
     }
 
     public function deleteRecipe() {
-        Recipe::where('info', null)->delete();
+        Recipe::where('cousine_id', null)->delete();
         return back()->with('success', 'Recepty zmazane');
     }
 }

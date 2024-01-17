@@ -13,9 +13,9 @@
 --}}
 </head>
 <body>
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
+{{--@section('content')--}}
     @include('navbar')
 
     <!--obrazok kuchyne, typu jedla plus informacie o nom-->
@@ -29,7 +29,7 @@
             <div class="container ">
                 <div class="row g-4">
                     <div class="col image-container">
-                        <img src="images/cousines.jpg" alt="obrazok podla typu">
+                        <img class="cousine-img" src="{{ $cousine->img_path }}" alt="obrazok podla typu">
                     </div>
                     <div class="col">
                         <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -41,7 +41,7 @@
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
                                     <div class="accordion-body">
-                                        {{ $cousine->info }}
+                                        {!! $cousine->info !!}
                                     </div>
                                 </div>
                             </div>
@@ -87,71 +87,48 @@
             let cardContainer = document.getElementById('cardContainer');
             let cousineID = {{ $cousine->id }};
 
-            fetch(`/getRecipesAjax/${cousineID}`)
+            fetch(`/getRecipesCards/${cousineID}`)
                 .then(response => response.json())
                 .then(data => { //prejde vsetky
-                    data.recipes.forEach(recipe => {
-                        let divElement = document.createElement('div');
-                        divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+                    if (data.recipes.length > 0) { //ci su nejake
+                        data.recipes.forEach(recipe => {
+                            let divElement = document.createElement('div');
+                            divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+                            let infoCheck = recipe.info ? recipe.info : "";
+                            let timeCheck = recipe.time ? recipe.time : "";
+                            let originCheck = recipe.origin ? recipe.origin : "";
 
-                        divElement.innerHTML = `
-                            <div class="card">
-                                <img src="{{ asset('images/cookie.jpg') }}" class="card-img-top" alt="Konkretny recept">
+                            divElement.innerHTML = `
+                                <div class="card">
+                                    <img src="images/cookie.jpg" class="card-img-top" alt="Konkretny recept">
 
-                                <div class="card-body">
-                                    <h5 class="card-title bold">Názov receptu</h5>
-                                    <p class="card-text italic">Krátka veta o jedle, na zaujatie používateľa.</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-question-circle"></i> Obtiažnosť</li>
-                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> Dĺžka prípravy</li>
-                                    <li class="list-group-item"><i class="bi bi-globe-americas"></i> Pôvod jedla</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="recipe" class="card-link">Prezrieť</a>
-                                    @auth
-                                        <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
-                                            <i class="bi bi-heart"></i>
-                                        </button>
-                                    @endauth
-                                </div>
-                            </div>`;
+                                    <div class="card-body">
+                                        <h5 class="card-title bold">${recipe.name}</h5>
+                                        <p class="card-text italic">${infoCheck}</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><i class="bi bi-clock-history"></i> ${timeCheck}</li>
+                                        <li class="list-group-item italic"><i class="bi bi-question-circle"></i> ${recipe.difficulty}</li>
+                                        <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${originCheck}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="{{ url('/recipe') }}" class="card-link">Prezrieť</a>
+                                        @auth
+                                            <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
+                                                <i class="bi bi-heart"></i>
+                                            </button>
+                                        @endauth
+                                    </div>
+                                </div>`;
 
-                        cardContainer.appendChild(divElement);
-                    });
+                            cardContainer.appendChild(divElement);
+                        });
+                    }
+                    else {
+                        cardContainer.innerHTML = `<p>Žiadne recepty v tejto kategórií ešte nie sú pridané. Buďte prvý!</p>`;
+                    }
                 })
                 .catch(error => console.error('Error:', error));
-
-
-            /*for (let i = 0; i < 15; i++) {
-                let divElement = document.createElement('div');
-                divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
-
-                divElement.innerHTML = `
-                            <div class="card">
-                                <img src="{{ asset('images/cookie.jpg') }}" class="card-img-top" alt="Konkretny recept">
-
-                                <div class="card-body">
-                                    <h5 class="card-title bold">Názov receptu</h5>
-                                    <p class="card-text italic">Krátka veta o jedle, na zaujatie používateľa.</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-question-circle"></i> Obtiažnosť</li>
-                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> Dĺžka prípravy</li>
-                                    <li class="list-group-item"><i class="bi bi-globe-americas"></i> Pôvod jedla</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="recipe" class="card-link">Prezrieť</a>
-                                    @auth
-                                    <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                    @endauth
-                                </div>
-                            </div>`;
-
-                cardContainer.appendChild(divElement);
-            }*/
         });
 
 
@@ -174,6 +151,8 @@
             //window.location.href = 'http://localhost:8000/add';
         }
     </script>
+{{--
 @endsection
+--}}
 </body>
 </html>
