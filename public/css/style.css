@@ -78,12 +78,20 @@
 }
 
 .img-recept {
-    width: 20rem;
-    height: 25rem;
+    box-shadow: 20px 20px 50px black;
+    max-height: 100vh;
+    object-fit: contain;
+    overflow: hidden;
 }
 
 .cousine-img {
     max-width: 100%;
+    box-shadow: 20px 20px 50px black;
+}
+
+.cousine-info {
+    color: black;
+
 }
 
 .likes {

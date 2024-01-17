@@ -13,7 +13,9 @@ class Recipe extends Authenticatable
             'type', 'addinfo', 'imgpath', 'likes', 'ingredients',
             'steps', 'user_id', 'cousine_id'];
 
-
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     /*protected string $name;
     protected string $info;
     protected int $time;

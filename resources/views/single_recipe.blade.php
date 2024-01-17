@@ -19,57 +19,50 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-6">
-                <h3 class="bold">Cookies</h3>
+                <h2 class="bold">{{ $recipe->name }}</h2>
                 <br>
                 <div>
-                    <i class="bi bi-question-circle"></i> Obtiažnosť
+                    {{ optional($recipe->author)->name }}
+                </div>
+                <br>
+                <div>
+                    <i class="bi bi-clock-history"></i> {{ $recipe->time }}
                 </div>
                 <div>
-                    <i class="bi bi-clock-history"></i> Dĺžka prípravy
+                    <i class="bi bi-question-circle"></i> {{ $recipe->difficulty }}
                 </div>
                 <div>
-                    <i class="bi bi-globe-americas"></i> Pôvod jedla
+                    <i class="bi bi-globe-americas"></i> {{ $recipe->origin }}
                 </div><br>
 
                 <h5 class="bold">Ingrediencie</h5>
-                <p class="ingrediencie">180 g polohrubá múka<br>
+                <p class="ingrediencie">
+                    {!! $recipe->ingredients !!}
+                </p>
+                {{--<p class="ingrediencie">180 g polohrubá múka<br>
                     130 g práškový cukor<br>
                     125 g maslo<br>
                     1 balíček vanilkový cukor<br>
                     1 ks vajce<br>
                     1 KL kypriaci prášok<br>
                     150 g tmavá čokoláda<br>
-                </p>
+                </p>--}}
                 <br>
-
-                <button type="button" class="btn btn-sm btn-outline-danger" onclick="toggleHeartAnimation(this)">
-                    <i class="bi bi-heart" ></i> Uložiť do obľúbených receptov
-                </button><br>
 
             </div>
             <div class="col-12 col-lg-6">
-                <br><img class="image-container img-recept" src="{{ asset('images/cookie.jpg') }}" alt="nahlad receptu">
+                <br><img class="image-container img-fluid img-recept" src="{{ asset('images/cuisines.jpg') }}" alt="nahlad receptu">
             </div>
-        </div><br><hr>
+        </div><br>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="toggleHeartAnimation(this)">
+            <i class="bi bi-heart" ></i> Uložiť do obľúbených receptov
+        </button><br><hr>
 
         <div class="row">
             <div class="col">
                 <h5 class="bold">Postup prípravy</h5>
             </div>
-            <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Fusce eget est dignissim, varius tellus sit amet, finibus orci.
-                Donec imperdiet leo at ex tincidunt hendrerit.<br>
-                2. Donec eleifend odio vel urna vestibulum, vitae lobortis mauris rhoncus.
-                Ut luctus nisl id luctus porttitor.<br>
-                3. Praesent hendrerit nulla et tellus dapibus, non convallis purus venenatis.
-                Nunc suscipit nisl sed tellus vestibulum tempor.<br>
-                4. Pellentesque egestas leo in justo sollicitudin, porta hendrerit velit ornare.
-                Fusce id justo aliquet, gravida est faucibus, euismod erat.
-                In et urna placerat, viverra mauris at, placerat quam.<br>
-                5. Ut vestibulum orci quis dui egestas facilisis.
-                Proin egestas odio sed lorem varius, euismod hendrerit mi aliquam.<br>
-                6. Praesent ornare arcu eget pretium egestas.
-                Vivamus porta sapien id justo scelerisque, sed posuere arcu ullamcorper.<br></p>
+            <p>{{ $recipe->steps }}<br></p>
         </div>
         <!--pridat mozno nejake obrazky postupu-->
 

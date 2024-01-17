@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cousine;
 use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +45,13 @@ class RecipeController extends Controller
         $recipes = Recipe::where('user_id', $user_id)->get();
 
         return response()->json(['recipes' => $recipes]);
+    }
+
+    public function getRecipe($recipe_id) {
+        $recipe = Recipe::find($recipe_id);
+        $user = $recipe->author();
+
+        return view('single_recipe', compact('recipe', 'user'));
     }
 
     /*function my() {

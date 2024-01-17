@@ -41,6 +41,8 @@ Route::get('/getRecipesCards/{cousine_id}', [RecipeController::class, 'showRecip
 
 Route::get('/getMyRecipes', [RecipeController::class, 'showMyRecipes']);
 
+Route::get('/recipe/{recipe_id}', [RecipeController::class, 'getRecipe']);
+
 
 //Route::get('/delete', [RecipeController::class, 'deleteRecipe']);
 

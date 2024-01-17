@@ -29,7 +29,7 @@
             <div class="container ">
                 <div class="row g-4">
                     <div class="col image-container">
-                        <img class="cousine-img" src="{{ $cousine->img_path }}" alt="obrazok podla typu">
+                        <img class="cousine-img" src="{{ asset('images/'.$cousine->img_path) }}" alt="obrazok podla typu">
                     </div>
                     <div class="col">
                         <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -40,7 +40,7 @@
                                     </button>
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body cousine-info">
                                         {!! $cousine->info !!}
                                     </div>
                                 </div>
@@ -97,10 +97,11 @@
                             let infoCheck = recipe.info ? recipe.info : "";
                             let timeCheck = recipe.time ? recipe.time : "";
                             let originCheck = recipe.origin ? recipe.origin : "";
+                            let recipeId = recipe.id;
 
                             divElement.innerHTML = `
                                 <div class="card">
-                                    <img src="images/cookie.jpg" class="card-img-top" alt="Konkretny recept">
+                                    <img src="{{ asset('images/'.$cousine->img_path) }} class="card-img-top" alt="Konkretny recept">
 
                                     <div class="card-body">
                                         <h5 class="card-title bold">${recipe.name}</h5>
@@ -112,7 +113,7 @@
                                         <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${originCheck}</li>
                                     </ul>
                                     <div class="card-body">
-                                        <a href="{{ url('/recipe') }}" class="card-link">Prezrieť</a>
+                                        <a href="#" data-recipe-id="${recipeId}" class="card-link">Prezrieť</a>
                                         @auth
                                             <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
                                                 <i class="bi bi-heart"></i>
@@ -123,6 +124,18 @@
 
                             cardContainer.appendChild(divElement);
                         });
+                        //neviem ci toto bude fungovat,
+                        cardContainer.addEventListener('click', function (event) {
+                            if (event.target.classList.contains('card-link')) {
+                                event.preventDefault();
+                                let recipeId = event.target.getAttribute('data-recipe-id');
+
+                                // Redirect to the recipe view with the retrieved data
+                                window.location.href = `/recipe/${recipeId}`;
+                            }
+                        });
+
+
                     }
                     else {
                         cardContainer.innerHTML = `<p>Žiadne recepty v tejto kategórií ešte nie sú pridané. Buďte prvý!</p>`;
