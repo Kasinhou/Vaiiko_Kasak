@@ -16,6 +16,10 @@ class Recipe extends Authenticatable
     public function author() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getDate() {
+        return \Carbon\Carbon::parse($this->created_at)->format('d.m.20y');
+    }
     /*protected string $name;
     protected string $info;
     protected int $time;

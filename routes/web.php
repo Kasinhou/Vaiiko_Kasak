@@ -43,7 +43,8 @@ Route::get('/getMyRecipes', [RecipeController::class, 'showMyRecipes']);
 
 Route::get('/recipe/{recipe_id}', [RecipeController::class, 'getRecipe']);
 
+Route::delete('/delete/{recipe_id}', [RecipeController::class, 'deleteRecipe']);
 
-//Route::get('/delete', [RecipeController::class, 'deleteRecipe']);
+//Route::get('/delete', [RecipeController::class, 'deleteRecipeDefault']);
 
 Auth::routes();

@@ -53,9 +53,9 @@
                                                 <small class="text-body-secondary">Naposledy upravené ${days} dní dozadu.</small>
 
                                                 <div class="d-flex gap-2">
-                                                    <button type="button" class="btn btn-outline-primary" onclick="goToRecipe()">Prezrieť</button>
-                                                    <button type="button" class="btn btn-outline-success">Upraviť</button>
-                                                    <button type="button" class="btn btn-outline-danger">Vymazať</button>
+                                                    <button type="button" class="btn btn-outline-primary" data-recipe-id="${recipe.id}" onclick="goToRecipe(this)">Prezrieť</button>
+                                                    <a class="btn btn-outline-success">Upraviť</a>
+                                                    <button type="button" class="btn btn-outline-danger" data-recipe-id="${recipe.id}" onclick="deleteRecipe(this)">Vymazať</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,8 +76,29 @@
             .catch(error => console.error('Error:', error));
     });
 
-    function goToRecipe() {
-        window.location.href = '/recipe';
+    function goToRecipe(button) {
+        //event.preventDefault();
+        let recipeId = button.getAttribute('data-recipe-id');
+
+        window.location.href = `/recipe/${recipeId}`;
+    }
+
+    function deleteRecipe(button) {
+        let recipeId = button.getAttribute('data-recipe-id');
+
+        fetch(`/delete/${recipeId}`, {
+            method: 'DELETE',
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Content-Type': 'application/json', },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`NOK odpoved: ${response.status}`);
+                }
+                window.location.href = '/my_recipes';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
 </script>

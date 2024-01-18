@@ -22,7 +22,10 @@
                 <h2 class="bold">{{ $recipe->name }}</h2>
                 <br>
                 <div>
-                    {{ optional($recipe->author)->name }}
+                    <i class="bi bi-person-add"></i> {{ optional($recipe->author)->name }}
+                </div>
+                <div>
+                    <i class="bi bi-calendar3"></i> {{ $recipe->getDate() }}
                 </div>
                 <br>
                 <div>
@@ -39,14 +42,6 @@
                 <p class="ingrediencie">
                     {!! $recipe->ingredients !!}
                 </p>
-                {{--<p class="ingrediencie">180 g polohrubá múka<br>
-                    130 g práškový cukor<br>
-                    125 g maslo<br>
-                    1 balíček vanilkový cukor<br>
-                    1 ks vajce<br>
-                    1 KL kypriaci prášok<br>
-                    150 g tmavá čokoláda<br>
-                </p>--}}
                 <br>
 
             </div>

@@ -108,12 +108,18 @@ class RecipeController extends Controller
         return response()->json(['message' => 'Recipe added successfully']);*/
     }
 
-    public function updateRecipe() {
+    public function updateRecipe($recipe_id) {
 
     }
 
-    public function deleteRecipe() {
+    /*public function deleteRecipeDefault() {
         Recipe::where('cousine_id', null)->delete();
         return back()->with('success', 'Recepty zmazane');
+    }*/
+
+    public function deleteRecipe($recipe_id) {
+        Recipe::find($recipe_id)->delete();
+        return response()->json(['success'=>'Recept bol úspešne zmazaný.']);
     }
+
 }
