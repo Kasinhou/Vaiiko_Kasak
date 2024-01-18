@@ -54,8 +54,11 @@
 
                                                 <div class="d-flex gap-2">
                                                     <button type="button" class="btn btn-outline-primary" data-recipe-id="${recipe.id}" onclick="goToRecipe(this)">Prezrieť</button>
-                                                    <a class="btn btn-outline-success">Upraviť</a>
-                                                    <button type="button" class="btn btn-outline-danger" data-recipe-id="${recipe.id}" onclick="deleteRecipe(this)">Vymazať</button>
+                                                    <button type="button" class="btn btn-outline-success">Upraviť</button>
+                                                    <form id="deleteForm" action="/recipe/{recipe_id}" method="POST">
+                                                        @csrf
+                                                        <button type="button" class="btn btn-outline-danger" data-recipe-id="${recipe.id}" onclick="deleteRecipe(this)">Vymazať</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,6 +87,10 @@
     }
 
     function deleteRecipe(button) {
+        //let check = confirm("Naozaj si praješ vymazať recept?");
+        if (!confirm("Naozaj si praješ vymazať recept?")) {
+            return;
+        }
         let recipeId = button.getAttribute('data-recipe-id');
 
         fetch(`/delete/${recipeId}`, {

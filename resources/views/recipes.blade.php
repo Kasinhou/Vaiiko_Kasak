@@ -8,9 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-{{--
-    <script type="module" src="{{ asset('js/heartanimation.js') }}" defer></script>
---}}
+    <script src="{{ asset('js/heartanimation.js') }}"></script>
 </head>
 <body>
 {{--@extends('layouts.app')--}}
@@ -145,7 +143,7 @@
         });
 
 
-        function toggleHeartAnimation(button) {
+        /*function toggleHeartAnimation(button) {
             let isClickedAlready = button.classList.contains('heartBeat');
 
             //prida triedu ktoru treba
@@ -157,7 +155,7 @@
                 button.classList.add('heartBeatBack');
                 button.classList.remove('heartBeat');
             }
-        }
+        }*/
 
         function moveToPridaj() {
             window.location.href = '/add';

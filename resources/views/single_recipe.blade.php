@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/heartanimation.js') }}"></script>
 </head>
 <body>
 
@@ -21,22 +22,12 @@
             <div class="col-12 col-lg-6">
                 <h2 class="bold">{{ $recipe->name }}</h2>
                 <br>
-                <div>
-                    <i class="bi bi-person-add"></i> {{ optional($recipe->author)->name }}
-                </div>
-                <div>
-                    <i class="bi bi-calendar3"></i> {{ $recipe->getDate() }}
-                </div>
+                <div><i class="bi bi-person-add"></i> {{ optional($recipe->author)->name }}</div>
+                <div><i class="bi bi-calendar3"></i> {{ $recipe->getDate() }}</div>
                 <br>
-                <div>
-                    <i class="bi bi-clock-history"></i> {{ $recipe->time }}
-                </div>
-                <div>
-                    <i class="bi bi-question-circle"></i> {{ $recipe->difficulty }}
-                </div>
-                <div>
-                    <i class="bi bi-globe-americas"></i> {{ $recipe->origin }}
-                </div><br>
+                <div><i class="bi bi-clock-history"></i> {{ $recipe->time }}</div>
+                <div><i class="bi bi-question-circle"></i> {{ $recipe->difficulty }}</div>
+                <div><i class="bi bi-globe-americas"></i> {{ $recipe->origin }}</div><br>
 
                 <h5 class="bold">Ingrediencie</h5>
                 <p class="ingrediencie">
@@ -67,7 +58,7 @@
 
 @include('foot')
 
-<script>
+{{--<script>
     function toggleHeartAnimation(button) {
         let isClickedAlready = button.classList.contains('heartBeat');
 
@@ -81,6 +72,6 @@
             button.classList.remove('heartBeat');
         }
     }
-</script>
+</script>--}}
 </body>
 </html>
