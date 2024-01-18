@@ -70,25 +70,13 @@
                                 </ul>
                             @endif
                         </li>
-                        {{--<li class="dropdown">
-                            <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-                                Jedlá
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="recipes">raňajky</a></li>
-                                <li><a class="dropdown-item" href="recipes">hlavné jedlá</a></li>
-                                <li><a class="dropdown-item" href="recipes">vegánske</a></li>
-                                <li><a class="dropdown-item" href="recipes">iné...</a></li>
-                            </ul>
-                        </li>--}}
-                        <li>
-                            <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="d-inline-block bg-info rounded-circle p-1"></span>
-                                Tipy
-                            </button>
-                        </li>
                         @auth
+                            <li>
+                                <a class="btn text-white btn-hover" href="/tips">
+                                    <span class="d-inline-block bg-info rounded-circle p-1"></span>
+                                    Tipy
+                                </a>
+                            </li>
                             <li>
                                 <a class="btn text-white btn-hover" href="/favourites">
                                     <span class="d-inline-block bg-danger rounded-circle p-1"></span>

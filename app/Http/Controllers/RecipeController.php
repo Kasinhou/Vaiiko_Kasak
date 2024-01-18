@@ -70,7 +70,7 @@ class RecipeController extends Controller
         //$user_id = Auth::id();
         //Recipe::create DB::table('recipes')->insert
 
-        $query = Recipe::create([
+        $recipe = Recipe::create([
             'name'=>$request->input('name'),
             'info'=>$request->input('info'),
             'time'=>$request->input('time'),
@@ -78,7 +78,7 @@ class RecipeController extends Controller
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),
             'addinfo'=>$request->input('addinfo'),
-//------------------------------------------todo
+//---------------------------------imageee
             'imgpath'=>$request->input('imgpath'),
             'likes'=>0,
             'ingredients'=>$request->input('ingredients'),
@@ -87,7 +87,7 @@ class RecipeController extends Controller
             'cousine_id'=>$request->input('cousine_id'),
         ]);
 
-        if ($query) {
+        if ($recipe) {
             return back()->with('success', 'Úspešné pridanie receptu');
         } else {
             return back()->with('fail', 'Neúspešné pridanie receptu');
@@ -108,8 +108,44 @@ class RecipeController extends Controller
         return response()->json(['message' => 'Recipe added successfully']);*/
     }
 
-    public function updateRecipe($recipe_id) {
+    public function editRecipe($recipe_id) {
+        $recipe = Recipe::find($recipe_id);
+        $cousines = Cousine::all();
 
+        return view('edit_recipe', compact('recipe', 'cousines'));
+    }
+
+    public function update(Request $request, $recipe_id) {
+        $request->validate([
+            'name'=>'required',
+            'ingredients'=>'required',
+            'steps'=>'required'
+        ]);
+
+        $recipe = Recipe::find($recipe_id);
+
+        $recipe->update([
+            'name'=>$request->input('name'),
+            'info'=>$request->input('info'),
+            'time'=>$request->input('time'),
+            'origin'=>$request->input('origin'),
+            'difficulty'=>$request->input('difficulty'),
+            'type'=>$request->input('type'),
+            'addinfo'=>$request->input('addinfo'),
+            //-------obrazok
+            'imgpath'=>$request->input('imgpath'),
+            'likes'=>$recipe->likes,
+            'ingredients'=>$request->input('ingredients'),
+            'steps'=>$request->input('steps'),
+            'user_id'=>$recipe->user_id,
+            'cousine_id'=>$request->input('cousine_id'),
+        ]);
+
+        if ($recipe) {
+            return back()->with('success', 'Úspešné upravenie receptu');
+        } else {
+            return back()->with('fail', 'Neúspešné upravenie receptu');
+        }
     }
 
     /*public function deleteRecipeDefault() {
