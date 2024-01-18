@@ -78,7 +78,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="btn text-white btn-hover" href="/favourites">
+                                <a class="btn text-white btn-hover" href="/favorites">
                                     <span class="d-inline-block bg-danger rounded-circle p-1"></span>
                                     Obľúbené
                                 </a>

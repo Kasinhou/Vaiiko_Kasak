@@ -25,7 +25,7 @@ class CousineController extends Controller
         /*Cousine::create([
             'name' => '',
             'info' => '',
-            'img_path' => 'public/images/slovenska.jpg',
+            'img_path' => 'nemecka.jpg',
             ]);
 
         return 'Default data inserted successfully.';*/

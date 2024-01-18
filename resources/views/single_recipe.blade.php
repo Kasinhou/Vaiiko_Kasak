@@ -45,7 +45,7 @@
 
             </div>
             <div class="col-12 col-lg-6">
-                <br><img class="image-container img-fluid img-recept" src="{{ asset('images/cuisines.jpg') }}" alt="nahlad receptu">
+                <br><img class="image-container img-fluid img-recept" src="{{ asset('uploads/recipe/' . $recipe->imgpath) }}" alt="nahlad receptu">
             </div>
         </div><br>
         <button type="button" class="btn btn-sm btn-outline-danger" onclick="toggleHeartAnimation(this)">

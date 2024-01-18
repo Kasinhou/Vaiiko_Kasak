@@ -58,6 +58,19 @@ class RecipeController extends Controller
         return view('my_recipes');
     }*/
 
+    public function saveImg(Request $request) {
+        if ($request->hasFile('imgpath')) {
+        //if ($file && $file->isValid()) {
+            $file = $request->file('imgpath');
+            $extension = $file->getClientOriginalExtension();//img extension
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/recipe/', $filename);
+            return $filename;
+        } else {
+            return "";
+        }
+    }
+
     public function addRecipe(Request $request)
     {
         //return $request->input();
@@ -79,7 +92,8 @@ class RecipeController extends Controller
             'type'=>$request->input('type'),
             'addinfo'=>$request->input('addinfo'),
 //---------------------------------imageee
-            'imgpath'=>$request->input('imgpath'),
+            'imgpath'=>$this->saveImg($request),
+            /*'imgpath'=>$request->input('imgpath'),*/
             'likes'=>0,
             'ingredients'=>$request->input('ingredients'),
             'steps'=>$request->input('steps'),

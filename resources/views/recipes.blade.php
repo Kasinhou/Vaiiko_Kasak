@@ -71,7 +71,7 @@
                 {{--<p>Na pridavanie receptov sa musis prihlasit</p>--}}
             @endauth
             <h3 class="vpravo-zarovnanie bold">Ponuka receptov</h3>
-            <div id="cardContainer" class="row g-2"></div>
+            <div id="cardContainer" data-base-url="{{ asset('uploads/recipe/') }}" class="row g-2"></div>
 
         </div>
     </main>
@@ -84,6 +84,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             let cardContainer = document.getElementById('cardContainer');
             let cousineID = {{ $cousine->id }};
+            //definovana cesta k obrazkom
+            let baseUrl = cardContainer.dataset.baseUrl;
 
             fetch(`/getRecipesCards/${cousineID}`)
                 .then(response => response.json())
@@ -96,10 +98,11 @@
                             let timeCheck = recipe.time ? recipe.time : "";
                             let originCheck = recipe.origin ? recipe.origin : "";
                             let recipeId = recipe.id;
+                            //let image = recipe.imgpath ? recipe.imgpath : "";
 
                             divElement.innerHTML = `
                                 <div class="card">
-                                    <img src="{{ asset('images/'.$cousine->img_path) }} class="card-img-top" alt="Konkretny recept">
+                                    <img src="${baseUrl}/${recipe.imgpath}" class="card-img-top" alt="Konkretny recept">
 
                                     <div class="card-body">
                                         <h5 class="card-title bold">${recipe.name}</h5>

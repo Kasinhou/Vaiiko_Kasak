@@ -38,7 +38,7 @@
                     {{ Session::get('fail') }}
                 </div>
             @endif
-            <form action="addRecipe" method="post">
+            <form action="addRecipe" method="post" enctype="multipart/form-data">
 
             @csrf
                 <div class="form-group">

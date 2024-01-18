@@ -15,7 +15,7 @@
 
 <main>
     <h3 class="vpravo-zarovnanie bold">Moje recepty</h3><br>
-    <div id="myContainer" class="row g-2"></div>
+    <div id="myContainer" class="row g-2" data-base-url="{{ asset('uploads/recipe/') }}"></div>
 </main>
 
 @include('foot')
@@ -27,6 +27,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let cardContainer = document.getElementById('myContainer');
+        let baseUrl = cardContainer.dataset.baseUrl;
 
         fetch(`/getMyRecipes`)
             .then(response => response.json())
@@ -64,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-1">
-                                        <img src="{{ asset('images/cookie.jpg') }}" class="img-fluid rounded-start" alt="obrazok receptu">
+                                        <img src="${baseUrl}/${recipe.imgpath}" class="img-fluid rounded-start" alt="obrazok receptu">
                                     </div>
                                 </div>
                             </div>`;
