@@ -47,7 +47,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputTime">Koľko času zaberie príprava</label>
-                    <input type="number" name="time" class="form-control" placeholder="Minúty" value="{{ old('time') }}">
+                    <input type="text" name="time" class="form-control" placeholder="Minúty" value="{{ old('time') }}">
                 </div>
 
                 <div class="form-group">

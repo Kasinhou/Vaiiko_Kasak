@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+    <script src="{{ asset('js/backgroundImages.js') }}"></script>
 
 </head>
 <body>
@@ -43,10 +43,10 @@
 
 
 </main>
-<script>
+{{--<script>
     let bgImageContainer = document.getElementById('bgImageContainer');
 
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 9; i++) {
         let divElement = document.createElement('div');
         divElement.className = 'bg-image';
         let imgElement = document.createElement('img');
@@ -58,7 +58,7 @@
         divElement.appendChild(imgElement);
         bgImageContainer.appendChild(divElement);
     }
-</script>
+</script>--}}
 </body>
 </html>
 

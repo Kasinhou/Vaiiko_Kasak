@@ -68,7 +68,7 @@
             @auth
                 <button type="button" class="btn btn-outline-info btn-lg bold vlavo-zarovnanie" onclick="moveToPridaj()">PRIDAŤ RECEPT</button>
             @else
-                <p>Na pridavanie receptov sa musis prihlasit</p>
+                {{--<p>Na pridavanie receptov sa musis prihlasit</p>--}}
             @endauth
             <h3 class="vpravo-zarovnanie bold">Ponuka receptov</h3>
             <div id="cardContainer" class="row g-2"></div>

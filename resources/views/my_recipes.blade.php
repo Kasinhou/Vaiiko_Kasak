@@ -73,7 +73,10 @@
                     });
                 }
                 else {
-                    cardContainer.innerHTML = `<p>Zatiaľ ste nepridali žiadne recepty. Podeľte sa s ostatnými o vaše kuchárske umenie.</p>`;
+                    let divElement = document.createElement('div');
+                    divElement.className = "stred";
+                    divElement.innerHTML = `<p class="bold">Zatiaľ ste nepridali žiadne recepty. Podeľte sa s ostatnými o vaše kuchárske umenie.</p>`;
+                    cardContainer.appendChild(divElement);
                 }
             })
             .catch(error => console.error('Error:', error));

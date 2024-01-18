@@ -73,12 +73,12 @@ class RecipeController extends Controller
         $query = Recipe::create([
             'name'=>$request->input('name'),
             'info'=>$request->input('info'),
-            'time'=>abs($request->input('time')),
+            'time'=>$request->input('time'),
             'origin'=>$request->input('origin'),
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),
             'addinfo'=>$request->input('addinfo'),
-
+//------------------------------------------todo
             'imgpath'=>$request->input('imgpath'),
             'likes'=>0,
             'ingredients'=>$request->input('ingredients'),

@@ -25,11 +25,19 @@
                 <div><i class="bi bi-person-add"></i> {{ optional($recipe->author)->name }}</div>
                 <div><i class="bi bi-calendar3"></i> {{ $recipe->getDate() }}</div>
                 <br>
-                <div><i class="bi bi-clock-history"></i> {{ $recipe->time }}</div>
-                <div><i class="bi bi-question-circle"></i> {{ $recipe->difficulty }}</div>
-                <div><i class="bi bi-globe-americas"></i> {{ $recipe->origin }}</div><br>
+                <div class="row">
+                    <div class="col-3">
+                        <div><i class="bi bi-clock-history"></i> {{ $recipe->getTime() }}</div>
+                        <div><i class="bi bi-question-circle"></i> {{ $recipe->difficulty }}</div>
+                        <div><i class="bi bi-globe-americas"></i> {{ $recipe->origin }}</div><br>
+                    </div>
+                    <div class="col-9">
+                        <div><i class="bi bi-info-circle"></i> {{ $recipe->info }}</div>
+                        <div><i class="bi bi-code"></i> {{ $recipe->type }}</div>
+                    </div>
+                </div>
 
-                <h5 class="bold">Ingrediencie</h5>
+                <h5 class="bold"><i class="bi bi-list-task"></i> Ingrediencie</h5>
                 <p class="ingrediencie">
                     {!! $recipe->ingredients !!}
                 </p>
@@ -46,17 +54,32 @@
 
         <div class="row">
             <div class="col">
-                <h5 class="bold">Postup prípravy</h5>
+                <h5 class="bold"><i class="bi bi-list-columns-reverse"></i> Postup prípravy</h5>
             </div>
+            {{--<div class="col-12">--}}
             <p>{{ $recipe->steps }}<br></p>
+            {{-- </div>--}}
+        </div><hr>
+        <div>
+            <div>
+                <h6 class="bold">Poznámky autora</h6>
+                <div>{{ $recipe->addinfo }}</div>
+            </div>
+            <div class="vpravo-zarovnanie">
+                <button type="button" class="btn btn-outline-info btn-md bold" onclick="pridajTip()">Pridať tip/myšlienku</button>
+            </div>
         </div>
-        <!--pridat mozno nejake obrazky postupu-->
 
     </div>
 </main>
 
 
 @include('foot')
+<script>
+    function pridajTip() {
+
+    }
+</script>
 
 {{--<script>
     function toggleHeartAnimation(button) {
