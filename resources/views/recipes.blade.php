@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        {{--<div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                                     Dodatočné informácie
@@ -52,7 +52,7 @@
                                     {{ $cousine->img_path }}
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
 
                         divElement.innerHTML = `
                             <div class="card">
-                                <img src="${baseUrl}/${recipe.imgpath}" class="card-img-top" alt="Konkretny recept">
+                                ${recipe.imgpath ? `<img src="${baseUrl}/${recipe.imgpath}" class="card-img-top">` : ``}
 
                                 <div class="card-body">
                                     <h5 class="card-title bold">${recipe.name}</h5>
@@ -110,8 +110,9 @@
                                     <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${originCheck}</li>
                                 </ul>
                                 <div class="card-body">
-                                    <a href="#" data-recipe-id="${recipeId}" class="card-link">Prezrieť</a>
                                     @auth
+                                    <a href="#" data-recipe-id="${recipeId}" class="card-link">Prezrieť</a>
+
                                         <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
                                             <i class="bi bi-heart"></i>
                                         </button>

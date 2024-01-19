@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    @extends('layouts.app')
+@extends('layouts.app')
 
-    @section('content')
-        @include('navbar')
-        <div class="container">
+@section('content')
+    @include('navbar')
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -83,6 +83,8 @@
             </div>
         </div>
     </div>
-    @endsection
+    <main></main>
+    @include('foot')
+@endsection
 </body>
 </html>

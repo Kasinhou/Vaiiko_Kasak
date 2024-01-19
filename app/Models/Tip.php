@@ -12,5 +12,5 @@ class Tip extends Model
     public $timestamps = true;
     protected $table = 'tips';
 
-    protected $fillable = ['content', 'user_id', 'recipe_id'];
+    protected $fillable = ['text', 'user_id', 'recipe_id'];
 }

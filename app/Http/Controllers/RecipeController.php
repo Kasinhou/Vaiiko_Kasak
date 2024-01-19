@@ -88,7 +88,6 @@ class RecipeController extends Controller
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),
             'addinfo'=>$request->input('addinfo'),
-//---------------------------------imageee
             'imgpath'=>$this->saveImg($request),
             'likes'=>0,
             'ingredients'=>$request->input('ingredients'),

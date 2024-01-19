@@ -65,9 +65,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-1">
-                                        <img src="${baseUrl}/${recipe.imgpath}" class="img-fluid rounded-start" alt="obrazok receptu">
-                                    </div>
+                                    ${recipe.imgpath ?
+                                        `<div class="col-md-1">
+                                            <img src="${baseUrl}/${recipe.imgpath}" class="img-fluid rounded-start" alt="obrazok receptu">
+                                        </div>` : ``}
                                 </div>
                             </div>`;
 
@@ -83,18 +84,6 @@
             })
             .catch(error => console.error('Error:', error));
     });
-
-    /*function goToRecipe(button) {
-        //event.preventDefault();
-        let recipeId = button.getAttribute('data-recipe-id');
-
-        window.location.href = `/recipe/${recipeId}`;
-    }
-
-    function editRecipe(button) {
-        let recipeId = button.getAttribute('data-recipe-id');
-        window.location.href = `/update/${recipeId}`;
-    }*/
 
     function deleteRecipe(button) {
         //let check = confirm("Naozaj si praješ vymazať recept?");

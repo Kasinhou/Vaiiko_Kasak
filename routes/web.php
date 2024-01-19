@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CousineController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\TipController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,12 @@ Route::get('/getRecipesCards/{cousine_id}', [RecipeController::class, 'showRecip
 
 Route::get('/getMyRecipes', [RecipeController::class, 'showMyRecipes']);
 
+Route::post('/addTip', [TipController::class, 'insertTip']);
 Route::get('/recipe/{recipe_id}', [RecipeController::class, 'getRecipe']);
+
+//totok nejako spravit
+/*Route::get('add', [RecipeController::class, 'index']);*/
+/*Route::post('/addTip', [TipController::class, 'insertTip']);*/
 
 Route::put('updateRecipe/{recipe_id}', [RecipeController::class, 'update'])->name('updateRecipe');
 Route::get('/update/{recipeId}', [RecipeController::class, 'editRecipe']);
