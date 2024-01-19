@@ -10,7 +10,7 @@ class Recipe extends Authenticatable
     protected $table = 'recipes';
     protected $fillable =
         ['name', 'info', 'time', 'origin', 'difficulty',
-            'type', 'addinfo', 'imgpath', 'likes', 'ingredients',
+            'type', 'addinfo', 'imgpath', 'ingredients',
             'steps', 'user_id', 'cousine_id'];
 
     public function author() {
@@ -23,6 +23,10 @@ class Recipe extends Authenticatable
 
     public function getTime() {
         return $this->time ? $this->time : "";
+    }
+
+    public function favorites() {
+        return $this->hasMany(Favorite::class);
     }
 
 }

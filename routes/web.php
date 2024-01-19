@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CousineController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TipController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,9 +48,11 @@ Route::get('/getMyRecipes', [RecipeController::class, 'showMyRecipes']);
 Route::post('/addTip', [TipController::class, 'insertTip']);
 Route::get('/recipe/{recipe_id}', [RecipeController::class, 'getRecipe']);
 
-//totok nejako spravit
-/*Route::get('add', [RecipeController::class, 'index']);*/
-/*Route::post('/addTip', [TipController::class, 'insertTip']);*/
+//this otfo
+Route::get('/getFavorites', [FavoriteController::class, 'getMyFavorites']);
+
+Route::post('/addFavorite', [FavoriteController::class, 'saveFavorite']);
+Route::delete('/deleteFavorite/{recipe_id}', [FavoriteController::class, 'deleteFavorite']);
 
 Route::put('updateRecipe/{recipe_id}', [RecipeController::class, 'update'])->name('updateRecipe');
 Route::get('/update/{recipeId}', [RecipeController::class, 'editRecipe']);

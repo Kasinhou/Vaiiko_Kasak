@@ -111,7 +111,7 @@
                                 </ul>
                                 <div class="card-body">
                                     @auth
-                                    <a href="#" data-recipe-id="${recipeId}" class="card-link">Prezrieť</a>
+                                    <a href="#" data-recipe-id="${recipeId}" class="recipelink">Prezrieť</a>
 
                                         <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
                                             <i class="bi bi-heart"></i>
@@ -124,11 +124,9 @@
                     });
                     //neviem ci toto bude fungovat,
                     cardContainer.addEventListener('click', function (event) {
-                        if (event.target.classList.contains('card-link')) {
+                        if (event.target.classList.contains('recipelink')) {
                             event.preventDefault();
                             let recipeId = event.target.getAttribute('data-recipe-id');
-
-
                             window.location.href = `/recipe/${recipeId}`;
                         }
                     });

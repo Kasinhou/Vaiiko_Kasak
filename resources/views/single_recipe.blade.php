@@ -85,7 +85,7 @@
 
 @include('foot')
 <script>
-    function pridajTip() {
+    /*function pridajTip() {
         let nazor = document.getElementById('nazor').value;
         let recipeid = document.getElementById('rid').dataset.recipeid;
 
@@ -124,7 +124,7 @@
         } else {
             alert("Nezdieľate svoj názor.");
         }
-    }
+    }*/
 </script>
 </body>
 </html>

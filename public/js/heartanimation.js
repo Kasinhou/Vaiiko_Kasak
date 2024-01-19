@@ -1,3 +1,4 @@
+/*
 function toggleHeartAnimation(button) {
     let isClickedAlready = button.classList.contains('heartBeat');
 
@@ -11,3 +12,4 @@ function toggleHeartAnimation(button) {
         button.classList.remove('heartBeat');
     }
 }
+*/

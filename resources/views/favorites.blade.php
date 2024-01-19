@@ -15,9 +15,61 @@
 
 <main>
     <h3 class="vpravo-zarovnanie bold">Obľúbené</h3><br>
+    <div id="favContainer" class="row g-2 mt-2"></div>
 
 </main>
 
 @include('foot')
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let fav = document.getElementById('favContainer');
+
+        fetch(`/getFavorites`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.favorites.length > 0) { //ci ma nejake oblubene
+                    data.favorites.forEach(favorite => {
+                        let divElement = document.createElement('div');
+                        divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-2';
+                        //let favoriteId = favorite.id;
+
+                        divElement.innerHTML = `
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title bold">${favorite.recipe.name}</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> ${favorite.recipe.time}</li>
+                                    <li class="list-group-item italic"><i class="bi bi-question-circle"></i> ${favorite.recipe.difficulty}</li>
+                                    <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${favorite.recipe.origin}</li>
+                                </ul>
+                                <div class="card-body">
+                                    @auth
+                                        <a href="#" data-recipe-id="${favorite.recipe.id}" class="recipelink">Prezrieť</a>
+                                    @endauth
+                                </div>
+                            </div>`;
+
+                        fav.appendChild(divElement);
+                    });
+                    fav.addEventListener('click', function (event) {
+                        if (event.target.classList.contains('recipelink')) {
+                            event.preventDefault();
+                            let favoriteId = event.target.getAttribute('data-recipe-id');
+                            window.location.href = `/recipe/${favoriteId}`;
+                        }
+                    });
+                }
+                else {
+                    let divElement = document.createElement('div');
+                    divElement.className = "stred";
+                    divElement.innerHTML = `<p class="bold">Nemáte žiadne obľúbené recepty.</p>`;
+                    fav.appendChild(divElement);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+</script>

@@ -103,7 +103,7 @@
                 window.location.href = '/my_recipes';
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('ERROR:', error);
             });
     }
 
