@@ -48,7 +48,7 @@
                     <div class="position-static border-0 pt-0 mx-0 rounded-3 shadow overflow-hidden" data-bs-theme="dark">
                         <form class="p-2 mb-2 bg-dark border-bottom border-dark">
                             <label>
-                                <input type="search" class="form-control bg-dark" autocomplete="false" placeholder="Search...">
+                                <input type="search" class="form-control bg-dark" autocomplete="false" placeholder="Vyhľadaj...">
                             </label>
                         </form>
                     </div>

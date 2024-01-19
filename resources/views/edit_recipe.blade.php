@@ -38,7 +38,7 @@
                     {{ Session::get('fail') }}
                 </div>
             @endif
-            <form action="{{ route('updateRecipe', ['recipe_id' => $recipe->id]) }}" method="post">
+            <form action="{{ route('updateRecipe', ['recipe_id' => $recipe->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputInfo">Stručný popis</label>
-                    <input type="text" name="info" class="form-control" placeholder="Info" value="{{ old('info', $recipe->time) }}">
+                    <input type="text" name="info" class="form-control" placeholder="Info" value="{{ old('info', $recipe->info) }}">
                 </div>
 
                 <div class="form-group">
@@ -90,7 +90,7 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <label class="custom-file-label">Vyberte obrázok</label>
-                        <input type="file" name="imgpath" class="custom-file-input">
+                        <input type="file" name="imgpath" class="custom-file-input" value="{{ old('imgpath', $recipe->imgpath) }}">
                     </div>
                 </div>
 
@@ -120,8 +120,5 @@
         @include('foot')
     </div>
 </div>
-
-
-
 </body>
 </html>

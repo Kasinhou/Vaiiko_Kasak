@@ -80,9 +80,6 @@ class RecipeController extends Controller
             'steps'=>'required'
         ]);
 
-        //$user_id = Auth::id();
-        //Recipe::create DB::table('recipes')->insert
-
         $recipe = Recipe::create([
             'name'=>$request->input('name'),
             'info'=>$request->input('info'),
@@ -93,7 +90,6 @@ class RecipeController extends Controller
             'addinfo'=>$request->input('addinfo'),
 //---------------------------------imageee
             'imgpath'=>$this->saveImg($request),
-            /*'imgpath'=>$request->input('imgpath'),*/
             'likes'=>0,
             'ingredients'=>$request->input('ingredients'),
             'steps'=>$request->input('steps'),
@@ -106,20 +102,6 @@ class RecipeController extends Controller
         } else {
             return back()->with('fail', 'Neúspešné pridanie receptu');
         }
-
-        /*$recipe = new Recipe();
-        $recipe->name = $request->input('name');
-        $recipe->info = $request->input('info');
-        $recipe->time = $request->input('time');
-        $recipe->difficulty = $request->input('difficulty');
-        $recipe->country = $request->input('country');
-        $recipe->type = $request->input('type');
-        $recipe->ingredients = $request->input('ingredients');
-        $recipe->steps = $request->input('steps');
-
-        $recipe->save();
-
-        return response()->json(['message' => 'Recipe added successfully']);*/
     }
 
     public function editRecipe($recipe_id) {
@@ -127,6 +109,19 @@ class RecipeController extends Controller
         $cousines = Cousine::all();
 
         return view('edit_recipe', compact('recipe', 'cousines'));
+    }
+
+    public function updateImg(Request $request, $recipe) {
+        if ($request->hasFile('imgpath')) {
+            //echo "Tuto to je";
+            $file = $request->file('imgpath');
+            $extension = $file->getClientOriginalExtension();//img extension
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/recipe/', $filename);
+            return $filename;
+        } else {
+            return $recipe->imgpath;
+        }
     }
 
     public function update(Request $request, $recipe_id) {
@@ -137,6 +132,7 @@ class RecipeController extends Controller
         ]);
 
         $recipe = Recipe::find($recipe_id);
+        $new_img = $this->updateImg($request, $recipe);
 
         $recipe->update([
             'name'=>$request->input('name'),
@@ -146,8 +142,7 @@ class RecipeController extends Controller
             'difficulty'=>$request->input('difficulty'),
             'type'=>$request->input('type'),
             'addinfo'=>$request->input('addinfo'),
-            //-------obrazok
-            'imgpath'=>$request->input('imgpath'),
+            'imgpath'=>$new_img,
             'likes'=>$recipe->likes,
             'ingredients'=>$request->input('ingredients'),
             'steps'=>$request->input('steps'),
@@ -161,11 +156,6 @@ class RecipeController extends Controller
             return back()->with('fail', 'Neúspešné upravenie receptu');
         }
     }
-
-    /*public function deleteRecipeDefault() {
-        Recipe::where('cousine_id', null)->delete();
-        return back()->with('success', 'Recepty zmazane');
-    }*/
 
     public function deleteRecipe($recipe_id) {
         Recipe::find($recipe_id)->delete();
