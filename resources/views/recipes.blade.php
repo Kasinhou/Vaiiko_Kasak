@@ -139,26 +139,6 @@
             })
             .catch(error => console.error('Error:', error));
     });
-
-
-    /*function toggleHeartAnimation(button) {
-        let isClickedAlready = button.classList.contains('heartBeat');
-
-        //prida triedu ktoru treba
-        if (!isClickedAlready) {
-            button.classList.add('heartBeat');
-            button.classList.remove('heartBeatBack');
-
-        } else {
-            button.classList.add('heartBeatBack');
-            button.classList.remove('heartBeat');
-        }
-    }*/
-
-    /*function moveToPridaj() {
-        window.location.href = '/add';
-        //window.location.href = 'http://localhost:8000/add';
-    }*/
 </script>
 </body>
 </html>

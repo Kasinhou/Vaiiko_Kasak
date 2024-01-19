@@ -92,10 +92,11 @@ function pridajTip() {
     if (nazor.trim() !== "") {
         let notes = document.getElementById('poznamkyContainer');
         let divElement = document.createElement('div');
-        let userName = document.getElementById('authorInfo').dataset.username;
-        let userid = document.getElementById('authorInfo').dataset.userid;
+        //let userName = document.getElementById('authorInfo').dataset.username;
+        let userName = document.getElementById('poznamkyContainer').dataset.username;
+        //let userid = document.getElementById('authorInfo').dataset.userid;
         //console.log(notes, " ", userid, " ", recipeid);
-        alert(nazor + " " + userid  + " " + recipeid);
+        //alert(nazor + " " + userid  + " " + recipeid);
 
         $.ajax({
             type: 'POST',
@@ -109,7 +110,18 @@ function pridajTip() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function () {
-                divElement.innerHTML = `<p>${userName} : ${nazor}</p>`;
+                divElement.innerHTML = `
+                    <div class="row">
+                        <div class="col-10">
+                            <p>${userName} : ${nazor}</p>
+                        </div>
+                        <div class="col-2 text-end">
+                            <button class="btn"><i class="fa fa-edit"></i></button>
+                            <button class="btn"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                    `;
+
                 notes.appendChild(divElement);
 
                 document.getElementById('nazor').value = "";

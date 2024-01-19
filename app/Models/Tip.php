@@ -13,4 +13,8 @@ class Tip extends Model
     protected $table = 'tips';
 
     protected $fillable = ['text', 'user_id', 'recipe_id'];
+
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

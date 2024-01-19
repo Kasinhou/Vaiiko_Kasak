@@ -20,6 +20,13 @@ class TipController extends Controller
         return view('single_recipe', compact('tip'));
     }*/
 
+    public function showRecipeTips($recipe_id)
+    {
+        $tips = Tip::where('recipe_id', $recipe_id)->with('author')->get();
+
+        return response()->json(['tips' => $tips]);
+    }
+
     public function insertTip(Request $request)
     {
         //echo $request;

@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/jsfunction.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -70,7 +71,7 @@
                 <h6 class="bold">Poznámka autora</h6>
                 <div>{{ $recipe->addinfo }}</div>
             </div><hr>
-            <div id="poznamkyContainer"></div>{{--pridat z db--}}
+            <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"></div>
             <div>
                 <textarea id="nazor" class="form-control" name="tip" rows="3" placeholder="Podeľte sa o váš názor..."></textarea>
             </div><br>
@@ -85,6 +86,41 @@
 
 @include('foot')
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let poznamky = document.getElementById('poznamkyContainer');
+        let currUser = document.getElementById('poznamkyContainer').dataset.userid;
+        console.log("current id user ", currUser);
+        let recipeId = document.getElementById('rid').dataset.recipeid;
+        console.log("111111111111111");
+
+        fetch(`/getRecipeTips/${recipeId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("222222222");
+                if (data.tips.length > 0) { //ak uz su nejake
+                    data.tips.forEach(tip => {
+                        let divElement = document.createElement('div');
+                        divElement.className = "row";
+                        //let tipByWho = tip.user_id;
+
+                        console.log("333333333333");
+                        divElement.innerHTML = `
+                            <div class="col-10">
+                                <p>${tip.author.name}: ${tip.text}</p>
+                            </div>
+                            ${tip.author.id == currUser
+                                ? `<div class="col-2 text-end">
+                                       <button class="btn"><i class="fa fa-edit"></i></button>
+                                       <button class="btn"><i class="fa fa-trash"></i></button>
+                                   </div>`
+                                : ``}`;
+
+                        poznamky.appendChild(divElement);
+                    });
+                }
+            }).catch(error => console.error('Error:', error));
+    });
+
     /*function pridajTip() {
         let nazor = document.getElementById('nazor').value;
         let recipeid = document.getElementById('rid').dataset.recipeid;

@@ -47,6 +47,7 @@ Route::get('/getMyRecipes', [RecipeController::class, 'showMyRecipes']);
 
 Route::post('/addTip', [TipController::class, 'insertTip']);
 Route::get('/recipe/{recipe_id}', [RecipeController::class, 'getRecipe']);
+Route::get('/getRecipeTips/{recipe_id}', [TipController::class, 'showRecipeTips']);//komentare
 
 //this otfo
 Route::get('/getFavorites', [FavoriteController::class, 'getMyFavorites']);
