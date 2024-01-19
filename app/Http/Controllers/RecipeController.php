@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cousine;
+use App\Models\Favorite;
 use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,6 +44,10 @@ class RecipeController extends Controller
     public function showMyRecipes() {
         $user_id = Auth::id();
         $recipes = Recipe::where('user_id', $user_id)->get();
+
+        foreach ($recipes as $recipe) {
+            $recipe->likes =  Favorite::where('recipe_id', $recipe->id)->count();
+        }
 
         return response()->json(['recipes' => $recipes]);
     }
