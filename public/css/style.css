@@ -281,3 +281,11 @@ footer {
     background-color: transparent;
     color: black;
 }
+
+.hiddenEdit {
+    display: none;
+}
+
+/*.showEdit {
+    display: grid;
+}*/

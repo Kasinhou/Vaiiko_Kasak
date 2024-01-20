@@ -77,8 +77,9 @@
                 <h6 class="bold">Poznámka autora</h6>
                 <div>{!! nl2br(str_replace(" ", " &nbsp;", $recipe->addinfo)) !!}</div>
             </div><hr>
-            <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"><p class="bold">Odpovede od čitateľov</p></div>
-            <div>
+            <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"><p class="bold">Diskusia</p></div>
+
+            <br><div>
                 <textarea id="nazor" class="form-control" name="tip" rows="3" placeholder="Podeľte sa o váš názor..."></textarea>
             </div><br>
             <div class="vpravo-zarovnanie">
@@ -113,11 +114,19 @@
                         divElement.innerHTML = `
                             <div class="col-8 col-lg-10">
                                 <p>${tip.author.name}: ${tip.text}</p>
+                                <div id="${tip.id}" class="row hiddenEdit">
+                                    <div class="col-9 col-lg-11">
+                                        <textarea id="ta${tip.id}" class="form-control" data-tipid="${tip.id}" name="edit" rows="2"></textarea>
+                                    </div>
+                                    <div class="col-3 col-lg-1 text-end">
+                                        <button type="button" class="btn btn-outline-dark btn-sm bold" data-tipid="${tip.id}" data-recipeid="${recipeId}" onclick="upravTip(this)">Upraviť</button>
+                                    </div>
+                                </div>
                             </div>
                             ${tip.author.id == currUser
                                 ? `<div class="col-4 col-lg-2 text-end">
-                                       <button class="btn" onclick="upravTip()"><i class="fa fa-edit"></i></button>
-                                       <button class="btn" data-recipeid="${recipeId}" data-tipid="${tip.id}}" onclick="zmazTip(this)"><i class="fa fa-trash"></i></button>
+                                       <button class="btn" data-recipeid="${recipeId}" data-tipid="${tip.id}" data-tiptext="${tip.text}" onclick="zobraz(this)"><i class="fa fa-edit"></i></button>
+                                       <button class="btn" data-recipeid="${recipeId}" data-tipid="${tip.id}" onclick="zmazTip(this)"><i class="fa fa-trash"></i></button>
                                    </div>`
                                 : ``}`;
 
@@ -127,8 +136,42 @@
             }).catch(error => console.error('Error:', error));
     });
 
-    function upravTip() {
+    function zobraz(button) {
+        let tipid = button.getAttribute('data-tipid');
+        let divUprava = document.getElementById(tipid);
+        if (divUprava.classList.contains("hiddenEdit")) {
+            divUprava.classList.remove("hiddenEdit");
+            document.getElementById('ta' + tipid).value = button.getAttribute('data-tiptext');
+        } else {
+            divUprava.classList.add("hiddenEdit");
+        }
+    }
 
+    function upravTip(button) {
+        let tipid = button.getAttribute('data-tipid');
+        let recipeid = button.getAttribute('data-recipeid');
+        $.ajax({
+            type: 'PUT',
+            url: `/updateTip/${tipid}`,
+            data: {
+                text: document.getElementById('ta' + tipid).value,
+                //user_id: userid,
+                recipe_id: recipeid
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                let tipid = response.tip;
+                console.log("som tuuu a asi to ide");
+                window.location.href = `/recipe/${recipeid}`;
+
+            },
+            error: function (error) {
+                console.error('Error :', error);
+                alert("Niečo sa pokazilo. Skúste prosím znova.");
+            }
+        });
     }
 
     function zmazTip(button) {
