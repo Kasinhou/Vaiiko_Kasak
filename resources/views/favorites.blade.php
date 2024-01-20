@@ -39,17 +39,18 @@
                         divElement.innerHTML = `
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title bold">${favorite.recipe.name}</h5>
+                                    <h5 class="card-title bold infocard text-center">${favorite.recipe.name}</h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><i class="bi bi-clock-history"></i> ${favorite.recipe.time}</li>
                                     <li class="list-group-item italic"><i class="bi bi-question-circle"></i> ${favorite.recipe.difficulty}</li>
                                     <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${favorite.recipe.origin}</li>
                                 </ul>
-                                <div class="card-body">
-                                    @auth
-                                        <a href="#" data-recipe-id="${favorite.recipe.id}" class="recipelink">Prezrieť</a>
-                                    @endauth
+                                <div class="card-body d-flex justify-content-between align-items-end">
+                                    <a href="#" data-recipe-id="${favorite.recipe.id}" class="recipelink bold">Celý recept</a>
+                                    <a class="btn btn-sm btn-outline-secondary heartBeat">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
                                 </div>
                             </div>`;
 

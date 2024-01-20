@@ -90,7 +90,7 @@
                                 ${recipe.imgpath ? `<img src="${baseUrl}/${recipe.imgpath}" class="card-img-top cardimage">` : `<img src="{{ asset('images/nophoto.jpg') }}" class="card-img-top cardimage">`}
 
                                 <div class="card-body">
-                                    <h5 class="card-title bold">${recipe.name}</h5>
+                                    <h5 class="card-title bold infocard text-center">${recipe.name}</h5>
                                     <p class="card-text italic infocard">${infoCheck}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
@@ -98,9 +98,9 @@
                                     <li class="list-group-item italic"><i class="bi bi-question-circle"></i> ${recipe.difficulty}</li>
                                     <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${originCheck}</li>
                                 </ul>
-                                <div class="card-body">
+                                <div class="card-body text-end">
                                     @auth
-                                    <a href="#" data-recipe-id="${recipeId}" class="recipelink">Prezrieť</a>
+                                    <a href="#" data-recipe-id="${recipeId}" class="recipelink bold">Celý recept</a>
                                     @endauth
                                 </div>
                             </div>`;

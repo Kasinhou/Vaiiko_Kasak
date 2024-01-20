@@ -129,6 +129,7 @@ function pridajTip() {
                 notes.appendChild(divElement);
 
                 document.getElementById('nazor').value = "";
+                //todo
                 window.location.href = `/recipe/${recipeid}`;
 
             },

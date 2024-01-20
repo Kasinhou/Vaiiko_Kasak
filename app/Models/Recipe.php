@@ -17,6 +17,10 @@ class Recipe extends Authenticatable
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function cousine() {
+        return $this->belongsTo(Cousine::class, 'cousine_id');
+    }
+
     public function getDate() {
         return \Carbon\Carbon::parse($this->created_at)->format('d.m.20y');
     }

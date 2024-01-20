@@ -36,7 +36,7 @@
                 if (data.recipes.length > 0) { //ci uz uzivatel nejake pridal
                     data.recipes.forEach(recipe => {
                         let divElement = document.createElement('div');
-                        let infoCheck = recipe.info ? recipe.info : "-";
+                        let infoCheck = recipe.info ? recipe.info : "";
                         const updated = new Date(recipe.updated_at);
                         const days = Math.floor((new Date() - updated) / (3600000 * 24));
                         //let likes = recipe.getLikes();

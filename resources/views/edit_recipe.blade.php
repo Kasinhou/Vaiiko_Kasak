@@ -89,7 +89,7 @@
 
                 <div class="input-group">
                     <div class="custom-file">
-                        <label class="custom-file-label">Vyberte obrázok</label>
+                        <label class="custom-file-label">Vyberte obrázok</label><br>
                         <input type="file" name="imgpath" class="custom-file-input" value="{{ old('imgpath', $recipe->imgpath) }}">
                     </div>
                 </div>

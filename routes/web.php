@@ -25,7 +25,6 @@ Route::get('/home', function () { return view('home'); });
 
 Route::get('/my_recipes', function () { return view('my_recipes'); });
 Route::get('/favorites', function () { return view('favorites'); });
-Route::get('/tips', function () { return view('tips'); });
 
 Route::get('/recipe', function () { return view('single_recipe'); });
 
@@ -62,6 +61,8 @@ Route::get('/update/{recipeId}', [RecipeController::class, 'editRecipe']);
 
 Route::delete('/delete/{recipe_id}', [RecipeController::class, 'deleteRecipe']);
 Route::delete('/deleteTip/{tip_id}', [TipController::class, 'deleteTip']);
+
+Route::get('/search/', [RecipeController::class, 'searching'])->name('search');
 
 //Route::get('/delete', [RecipeController::class, 'deleteRecipeDefault']);
 

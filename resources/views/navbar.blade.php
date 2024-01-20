@@ -45,10 +45,10 @@
 
             <div class="offcanvas-body">
                 <div>
-                    <div class="position-static border-0 pt-0 mx-0 rounded-3 shadow overflow-hidden" data-bs-theme="dark">
-                        <form class="p-2 mb-2 bg-dark border-bottom border-dark">
+                    <div class="position-static border-0 pt-0 mx-0 rounded-3 overflow-hidden" data-bs-theme="dark">
+                        <form class="p-2 mb-2 bg-dark border-bottom border-dark" action="{{ route('search') }}" method="GET">
                             <label>
-                                <input type="search" class="form-control bg-dark" autocomplete="false" placeholder="Vyhľadaj...">
+                                <input type="search" name="search" class="form-control bg-dark" autocomplete="false" placeholder="Vyhľadaj...">
                             </label>
                         </form>
                     </div>
@@ -70,13 +70,7 @@
                                 </ul>
                             @endif
                         </li>
-                        @auth
-                            <li>
-                                <a class="btn text-white btn-hover" href="/tips">
-                                    <span class="d-inline-block bg-info rounded-circle p-1"></span>
-                                    Tipy
-                                </a>
-                            </li>
+                        {{--@auth--}}
                             <li>
                                 <a class="btn text-white btn-hover" href="/favorites">
                                     <span class="d-inline-block bg-danger rounded-circle p-1"></span>
@@ -91,7 +85,7 @@
                                 {{--<button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
                                 </button>--}}
                             </li>
-                        @endauth
+                        {{--@endauth--}}
                         <li>
                             <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="d-inline-block bg-secondary rounded-circle p-1"></span>

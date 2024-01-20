@@ -83,7 +83,7 @@ class RecipeController extends Controller
     {
         //return $request->input();
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|string',
             'ingredients'=>'required',
             'steps'=>'required'
         ]);
@@ -165,6 +165,16 @@ class RecipeController extends Controller
     public function deleteRecipe($recipe_id) {
         Recipe::find($recipe_id)->delete();
         return response()->json(['success'=>'Recept bol úspešne zmazaný.']);
+    }
+
+    public function searching(Request $request) {
+        $expression = $request->input('search');
+
+        $recipes = Recipe::where('name', 'LIKE', "%{$expression}%")
+                         ->orWhere('info', 'LIKE', "%{$expression}%")
+                         ->get();
+
+        return view('search', compact('recipes'));
     }
 
 }

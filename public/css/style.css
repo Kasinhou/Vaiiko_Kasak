@@ -73,9 +73,9 @@
 .btn-hover:hover {opacity: 1}
 
 .ingrediencie {
-    border: 2px dashed black;
+    border-left: 1px solid black;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-style: italic;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .cardimage {
-    max-height: 30vh;
+    height: 30vh;
     object-fit: cover;
 }
 
@@ -211,6 +211,15 @@ html, body {
     left: 60%;
 }
 
+.recipelink {
+    color: black;
+    text-decoration: none;
+}
+
+.recipelink:hover {
+    color: firebrick;
+}
+
 @media screen and (max-width: 900px) {
     .bg-text {
         font-size: 40px;
@@ -264,7 +273,6 @@ footer {
     100% { transform: scale(1); }
 }
 
-
 .heart-right {
     background-color: transparent;
     color: black;
@@ -285,7 +293,3 @@ footer {
 .hiddenEdit {
     display: none;
 }
-
-/*.showEdit {
-    display: grid;
-}*/
