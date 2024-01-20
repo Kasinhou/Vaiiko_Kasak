@@ -35,24 +35,12 @@
                                     Niečo málo o type jedla
                                 </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse accordion-info">
                                 <div class="accordion-body cousine-info">
                                     {!! $cousine->info !!}
                                 </div>
                             </div>
                         </div>
-                        {{--<div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                    Dodatočné informácie
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                <div class="accordion-body">
-                                    {{ $cousine->img_path }}
-                                </div>
-                            </div>
-                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -89,6 +77,7 @@
                 if (data.recipes.length > 0) { //ci su nejake
                     data.recipes.forEach(recipe => {
                         let divElement = document.createElement('div');
+                        //divElement.className = 'col-12 col-lg-6';
                         divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
                         let infoCheck = recipe.info ? recipe.info : "";
                         let timeCheck = recipe.time ? recipe.time : "";
@@ -98,11 +87,11 @@
 
                         divElement.innerHTML = `
                             <div class="card">
-                                ${recipe.imgpath ? `<img src="${baseUrl}/${recipe.imgpath}" class="card-img-top">` : ``}
+                                ${recipe.imgpath ? `<img src="${baseUrl}/${recipe.imgpath}" class="card-img-top cardimage">` : `<img src="{{ asset('images/nophoto.jpg') }}" class="card-img-top cardimage">`}
 
                                 <div class="card-body">
                                     <h5 class="card-title bold">${recipe.name}</h5>
-                                    <p class="card-text italic">${infoCheck}</p>
+                                    <p class="card-text italic infocard">${infoCheck}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><i class="bi bi-clock-history"></i> ${timeCheck}</li>
@@ -112,10 +101,6 @@
                                 <div class="card-body">
                                     @auth
                                     <a href="#" data-recipe-id="${recipeId}" class="recipelink">Prezrieť</a>
-
-                                        <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
-                                            <i class="bi bi-heart"></i>
-                                        </button>
                                     @endauth
                                 </div>
                             </div>`;

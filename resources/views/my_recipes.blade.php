@@ -68,8 +68,8 @@
                                     </div>
                                     ${recipe.imgpath ?
                                         `<div class="col-md-1">
-                                            <img src="${baseUrl}/${recipe.imgpath}" class="img-fluid rounded-start" alt="obrazok receptu">
-                                        </div>` : ``}
+                                            <img src="${baseUrl}/${recipe.imgpath}" class="img-fluid rounded-start myRecipeImg">
+                                        </div>` : `<div class="col-md-1"><img src="{{ asset('images/nophoto.jpg') }}" class="img-fluid rounded-start myRecipeImg"></div>`}
                                 </div>
                             </div>`;
 

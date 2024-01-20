@@ -73,9 +73,20 @@
 .btn-hover:hover {opacity: 1}
 
 .ingrediencie {
+    border: 2px dashed black;
+    padding: 10px;
+    border-radius: 10px;
+    font-style: italic;
+}
+
+.steps {
     border-left: 3px dashed black;
     padding-left: 10px;
-    font-style: italic;
+}
+
+.accordion-info {
+    max-height: 50vh;
+    overflow-y: scroll;
 }
 
 .image-container {
@@ -101,22 +112,25 @@
 
 }
 
+.myRecipeImg {
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardimage {
+    max-height: 30vh;
+    object-fit: cover;
+}
+
+.infocard {
+    height: 10vh;
+}
+
 .likes {
     text-decoration: none;
     color: red;
     font-weight: bold;
 }
-
-.heart-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #ffffff;
-    //background-color: #ff2200;
-    color: black;
-    //color: white;
-}
-
 
 main {
     margin-top: 75px;
@@ -251,6 +265,12 @@ footer {
 }
 
 
+.heart-right {
+    background-color: transparent;
+    color: black;
+    border-color: black;
+}
+
 .heartBeat {
     background-color: #ff2200;
     color: white;
@@ -258,6 +278,6 @@ footer {
 }
 
 .heartBeatBack {
-    background-color: #ffffff;
+    background-color: transparent;
     color: black;
 }

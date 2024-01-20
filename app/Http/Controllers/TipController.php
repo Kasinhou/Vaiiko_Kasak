@@ -46,11 +46,24 @@ class TipController extends Controller
         return response()->json(['success'=>'Ďakujeme za zdieľanie názoru.']);
     }
 
-    public function updateTip() {
+    /*public function updateTip(Request $request) {
+        $request->validate([
+            'text'=>'required',
+            'recipe_id'=>'required'
+        ]);
 
-    }
+        $tip = Tip::find($tip_id);
 
-    public function deleteTip() {
+        $tip->update([
+            'text'=>$request->input('text'),
+            'user_id'=>Auth::id(),
+            'recipe_id'=>$request->input('recipe_id'),
+        ]);
+        return response()->json(['success'=>'Upravene.']);
+    }*/
 
-    }
+    /*public function deleteTip() {
+        Tip::find($tip_id)->delete();
+
+    }*/
 }

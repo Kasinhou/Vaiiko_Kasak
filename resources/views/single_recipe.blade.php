@@ -43,7 +43,7 @@
 
                 <h5 class="bold"><i class="bi bi-list-task"></i> Ingrediencie</h5>
                 <p class="ingrediencie">
-                    {!! $recipe->ingredients !!}
+                    {!! nl2br(e($recipe->ingredients)) !!}
                 </p>
                 <br>
 
@@ -54,22 +54,23 @@
                 @endif
             </div>
         </div><br>
-        <button type="button" class="btn btn-sm btn-outline-danger" onclick="toggleHeartAnimation(this)">
-            <i class="bi bi-heart" ></i> Uložiť do obľúbených receptov
+        <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
+            <i class="bi bi-heart"></i> Obľúbené
         </button><br><hr>
 
-        <div class="row">
-            <div class="col">
-                <h5 class="bold"><i class="bi bi-list-columns-reverse"></i> Postup prípravy</h5>
-            </div>
-            {{--<div class="col-12">--}}
-            <p>{{ $recipe->steps }}<br></p>
-            {{-- </div>--}}
-        </div><hr>
+
+        <div class="col">
+            <h5 class="bold"><i class="bi bi-list-columns-reverse"></i> Postup prípravy</h5>
+        </div>
+
+        <div class="col-11">
+            <p class="steps">{!! nl2br(e($recipe->steps)) !!}<br></p>
+        </div>
+        <hr>
         <div>
             <div>
                 <h6 class="bold">Poznámka autora</h6>
-                <div>{{ $recipe->addinfo }}</div>
+                <div>{!! nl2br(e($recipe->addinfo)) !!}</div>
             </div><hr>
             <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"></div>
             <div>
@@ -120,47 +121,6 @@
                 }
             }).catch(error => console.error('Error:', error));
     });
-
-    /*function pridajTip() {
-        let nazor = document.getElementById('nazor').value;
-        let recipeid = document.getElementById('rid').dataset.recipeid;
-
-        if (nazor.trim() !== "") {
-            let notes = document.getElementById('poznamkyContainer');
-            let divElement = document.createElement('div');
-            let userName = document.getElementById('authorInfo').dataset.username;
-            let userid = document.getElementById('authorInfo').dataset.userid;
-            //console.log(notes, " ", userid, " ", recipeid);
-            alert(nazor + " " + userid  + " " + recipeid);
-
-            $.ajax({
-                type: 'POST',
-                url: '/addTip',
-                data: {
-                    text: nazor,
-                    //user_id: userid,
-                    recipe_id: recipeid
-                },
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function () {
-                    divElement.innerHTML = `<p>${userName} : ${nazor}</p>`;
-                    notes.appendChild(divElement);
-
-                    document.getElementById('nazor').value = "";
-
-                },
-                error: function (error) {
-                    console.error('Error :', error);
-                    alert("Niečo sa pokazilo. Skúste prosím znova.");
-                }
-            });
-
-        } else {
-            alert("Nezdieľate svoj názor.");
-        }
-    }*/
 </script>
 </body>
 </html>

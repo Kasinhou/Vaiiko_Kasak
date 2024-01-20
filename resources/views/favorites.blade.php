@@ -33,6 +33,7 @@
                     data.favorites.forEach(favorite => {
                         let divElement = document.createElement('div');
                         divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-2';
+                        //TODO osetrit vstupy
                         //let favoriteId = favorite.id;
 
                         divElement.innerHTML = `
