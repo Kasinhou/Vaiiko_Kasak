@@ -43,7 +43,7 @@
 
                 <h5 class="bold"><i class="bi bi-list-task"></i> Ingrediencie</h5>
                 <p class="ingrediencie">
-                    {!! nl2br(e($recipe->ingredients)) !!}
+                    {!! nl2br(str_replace(" ", " &nbsp;", $recipe->ingredients)) !!}
                 </p>
                 <br>
 
@@ -54,23 +54,28 @@
                 @endif
             </div>
         </div><br>
-        <button type="button" class="btn btn-sm btn-outline-secondary heart-right" onclick="toggleHeartAnimation(this)">
-            <i class="bi bi-heart"></i> Obľúbené
-        </button><br><hr>
-
+        @if($favorite)
+            <button type="button" class="btn btn-sm btn-outline-secondary heart-right heartBeat" onclick="toggleHeartAnimation(this)">
+                <i class="bi bi-heart"></i> Obľúbené
+            </button>
+        @else
+            <button type="button" class="btn btn-sm btn-outline-secondary heart-right heartBeatBack" onclick="toggleHeartAnimation(this)">
+                <i class="bi bi-heart"></i> Obľúbené
+            </button>
+        @endif<br><hr>
 
         <div class="col">
             <h5 class="bold"><i class="bi bi-list-columns-reverse"></i> Postup prípravy</h5>
         </div>
 
         <div class="col-11">
-            <p class="steps">{!! nl2br(e($recipe->steps)) !!}<br></p>
+            <p class="steps">{!! nl2br(str_replace(" ", " &nbsp;", $recipe->steps)) !!}<br></p>
         </div>
         <hr>
         <div>
             <div>
                 <h6 class="bold">Poznámka autora</h6>
-                <div>{!! nl2br(e($recipe->addinfo)) !!}</div>
+                <div>{!! nl2br(str_replace(" ", " &nbsp;", $recipe->addinfo)) !!}</div>
             </div><hr>
             <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"></div>
             <div>
@@ -106,11 +111,11 @@
 
                         console.log("333333333333");
                         divElement.innerHTML = `
-                            <div class="col-10">
+                            <div class="col-8 col-md-9 col-lg-10">
                                 <p>${tip.author.name}: ${tip.text}</p>
                             </div>
                             ${tip.author.id == currUser
-                                ? `<div class="col-2 text-end">
+                                ? `<div class="col-4 col-md-3 col-lg-2 text-end">
                                        <button class="btn"><i class="fa fa-edit"></i></button>
                                        <button class="btn"><i class="fa fa-trash"></i></button>
                                    </div>`

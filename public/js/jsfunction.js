@@ -112,10 +112,10 @@ function pridajTip() {
             success: function () {
                 divElement.innerHTML = `
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-8 col-md-9 col-lg-10">
                             <p>${userName} : ${nazor}</p>
                         </div>
-                        <div class="col-2 text-end">
+                        <div class="col-4 col-md-3 col-lg-2 text-end">
                             <button class="btn"><i class="fa fa-edit"></i></button>
                             <button class="btn"><i class="fa fa-trash"></i></button>
                         </div>

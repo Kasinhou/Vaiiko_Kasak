@@ -55,8 +55,11 @@ class RecipeController extends Controller
     public function getRecipe($recipe_id) {
         $recipe = Recipe::find($recipe_id);
         $user = $recipe->author();
+        $favorite = Favorite::where('recipe_id', $recipe_id)
+                            ->where('user_id', Auth::id())
+                            ->first();
 
-        return view('single_recipe', compact('recipe', 'user'));
+        return view('single_recipe', compact('recipe', 'user', 'favorite'));
     }
 
     /*function my() {
