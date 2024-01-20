@@ -62,8 +62,8 @@ class TipController extends Controller
         return response()->json(['success'=>'Upravene.']);
     }*/
 
-    /*public function deleteTip() {
+    public function deleteTip($tip_id) {
         Tip::find($tip_id)->delete();
-
-    }*/
+        return response()->json(['success'=>'Príspevok vymazaný.']);
+    }
 }

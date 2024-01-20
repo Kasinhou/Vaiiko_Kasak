@@ -109,15 +109,19 @@ function pridajTip() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function () {
+            success: function (response) {
+                let tipid = response.tip;
+                console.log(tipid);
+
+
                 divElement.innerHTML = `
                     <div class="row">
-                        <div class="col-8 col-md-9 col-lg-10">
+                        <div class="col-8 col-lg-10">
                             <p>${userName} : ${nazor}</p>
                         </div>
-                        <div class="col-4 col-md-3 col-lg-2 text-end">
+                        <div class="col-4 col-lg-2 text-end">
                             <button class="btn"><i class="fa fa-edit"></i></button>
-                            <button class="btn"><i class="fa fa-trash"></i></button>
+                            <button class="btn" data-recipeid="${recipeid}" data-tipid="${tipid}" onclick="zmazTip(this)"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
                     `;
@@ -125,6 +129,7 @@ function pridajTip() {
                 notes.appendChild(divElement);
 
                 document.getElementById('nazor').value = "";
+                window.location.href = `/recipe/${recipeid}`;
 
             },
             error: function (error) {
@@ -137,3 +142,25 @@ function pridajTip() {
         alert("Nezdieľate svoj názor.");
     }
 }
+
+/*function zmazTip(button) {
+    if (!confirm("Váš príspevok bude odstránený!")) {
+        return;
+    }
+    let tipid = button.getAttribute('data-tipid');
+    let recipeid = button.getAttribute('data-recipeid');
+
+    fetch(`/deleteTip/${tipid}`, {
+        method: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Content-Type': 'application/json', },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`NOK odpoved: ${response.status}`);
+            }
+            window.location.href = `/recipe/${recipeid}`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}*/

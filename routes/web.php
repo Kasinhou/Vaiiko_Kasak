@@ -60,6 +60,7 @@ Route::get('/update/{recipeId}', [RecipeController::class, 'editRecipe']);
 
 
 Route::delete('/delete/{recipe_id}', [RecipeController::class, 'deleteRecipe']);
+Route::delete('/deleteTip/{tip_id}', [TipController::class, 'deleteTip']);
 
 //Route::get('/delete', [RecipeController::class, 'deleteRecipeDefault']);
 

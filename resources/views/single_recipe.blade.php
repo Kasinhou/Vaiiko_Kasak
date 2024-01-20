@@ -77,7 +77,7 @@
                 <h6 class="bold">Poznámka autora</h6>
                 <div>{!! nl2br(str_replace(" ", " &nbsp;", $recipe->addinfo)) !!}</div>
             </div><hr>
-            <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"></div>
+            <div id="poznamkyContainer" data-username="{{ auth()->user()->name }}" data-userid="{{ auth()->user()->id }}"><p class="bold">Odpovede od čitateľov</p></div>
             <div>
                 <textarea id="nazor" class="form-control" name="tip" rows="3" placeholder="Podeľte sa o váš názor..."></textarea>
             </div><br>
@@ -111,13 +111,13 @@
 
                         console.log("333333333333");
                         divElement.innerHTML = `
-                            <div class="col-8 col-md-9 col-lg-10">
+                            <div class="col-8 col-lg-10">
                                 <p>${tip.author.name}: ${tip.text}</p>
                             </div>
                             ${tip.author.id == currUser
-                                ? `<div class="col-4 col-md-3 col-lg-2 text-end">
-                                       <button class="btn"><i class="fa fa-edit"></i></button>
-                                       <button class="btn"><i class="fa fa-trash"></i></button>
+                                ? `<div class="col-4 col-lg-2 text-end">
+                                       <button class="btn" onclick="upravTip()"><i class="fa fa-edit"></i></button>
+                                       <button class="btn" data-recipeid="${recipeId}" data-tipid="${tip.id}}" onclick="zmazTip(this)"><i class="fa fa-trash"></i></button>
                                    </div>`
                                 : ``}`;
 
@@ -126,6 +126,32 @@
                 }
             }).catch(error => console.error('Error:', error));
     });
+
+    function upravTip() {
+
+    }
+
+    function zmazTip(button) {
+        if (!confirm("Váš príspevok bude odstránený!")) {
+            return;
+        }
+        let tipid = button.getAttribute('data-tipid');
+        let recipeid = button.getAttribute('data-recipeid');
+
+        fetch(`/deleteTip/${tipid}`, {
+            method: 'DELETE',
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Content-Type': 'application/json', },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`NOK odpoved: ${response.status}`);
+                }
+                window.location.href = `/recipe/${recipeid}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 </script>
 </body>
 </html>
