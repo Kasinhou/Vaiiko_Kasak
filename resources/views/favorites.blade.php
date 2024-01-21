@@ -16,7 +16,6 @@
 <main>
     <h3 class="vpravo-zarovnanie bold">Obľúbené</h3><br>
     <div id="favContainer" class="row g-2 mt-2 px-2"></div>
-
 </main>
 
 @include('foot')
@@ -26,6 +25,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         let fav = document.getElementById('favContainer');
 
+        //spracovanie a zobrazenie vsetkych oblubenych receptov
         fetch(`/getFavorites`)
             .then(response => response.json())
             .then(data => {
@@ -55,7 +55,7 @@
                             </div>`;
 
                         fav.appendChild(divElement);
-                    });
+                    });//presmerovanie na konkretny recept
                     fav.addEventListener('click', function (event) {
                         if (event.target.classList.contains('recipelink')) {
                             event.preventDefault();

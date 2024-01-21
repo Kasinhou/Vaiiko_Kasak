@@ -1,3 +1,4 @@
+/*Presmerovanie na samostatny recept*/
 function goToRecipe(button) {
     //event.preventDefault();
     let recipeId = button.getAttribute('data-recipe-id');
@@ -5,6 +6,7 @@ function goToRecipe(button) {
     window.location.href = `/recipe/${recipeId}`;
 }
 
+/*Uprava konkretneho receptu*/
 function editRecipe(button) {
     let recipeId = button.getAttribute('data-recipe-id');
     window.location.href = `/update/${recipeId}`;
@@ -32,6 +34,7 @@ function editRecipe(button) {
         });
 }*/
 
+/*Reakcia na klikanie tlacidla OBLUBENE*/
 function toggleHeartAnimation(button) {
     let isClickedAlready = button.classList.contains('heartBeat');
     let recipeid = document.getElementById('rid').dataset.recipeid;
@@ -85,6 +88,7 @@ function moveToPridaj() {
     window.location.href = '/add';
 }
 
+/*pridanie nazoru pod recept, reakcia na kliknutie tlacidla PRIDAT*/
 function pridajTip() {
     let nazor = document.getElementById('nazor').value;
     let recipeid = document.getElementById('rid').dataset.recipeid;
@@ -93,8 +97,7 @@ function pridajTip() {
         let notes = document.getElementById('poznamkyContainer');
         let divElement = document.createElement('div');
         let userName = document.getElementById('poznamkyContainer').dataset.username;
-        //let userid = document.getElementById('authorInfo').dataset.userid;
-        //console.log(notes, " ", userid, " ", recipeid);
+
 
         $.ajax({
             type: 'POST',
@@ -127,10 +130,8 @@ function pridajTip() {
                 notes.appendChild(divElement);
 
                 document.getElementById('nazor').value = "";
-                //todo
-                //window.location.href = `/recipe/${recipeid}`;
+
                 window.location.href = `/recipe/${recipeid}#poznamkyContainer`;
-                //window.location.href = `/recipe/${recipeid}#ta${tipid}`;
                 location.reload();
 
             },
@@ -145,24 +146,51 @@ function pridajTip() {
     }
 }
 
-/*function zmazTip(button) {
-    if (!confirm("Váš príspevok bude odstránený!")) {
-        return;
+/*Zobrazenie upravy nazoru pod receptom*/
+function zobraz(button) {
+    let tipid = button.getAttribute('data-tipid');
+    let divUprava = document.getElementById(tipid);
+    if (divUprava.classList.contains("hiddenEdit")) {
+        divUprava.classList.remove("hiddenEdit");
+        document.getElementById('ta' + tipid).value = button.getAttribute('data-tiptext');
+    } else {
+        divUprava.classList.add("hiddenEdit");
     }
+}
+
+/*Uprava nazoru pod receptom, reakcia na tlacidlo UPRAVIT*/
+function upravTip(button) {
+    //event.preventDefault();
+
     let tipid = button.getAttribute('data-tipid');
     let recipeid = button.getAttribute('data-recipeid');
-
-    fetch(`/deleteTip/${tipid}`, {
-        method: 'DELETE',
-        headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Content-Type': 'application/json', },
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`NOK odpoved: ${response.status}`);
-            }
+    if (document.getElementById('ta' + tipid).value.trim() === "") {
+        alert("Nie je možné zdieľať prázdny názor.");
+        return;
+    }
+    $.ajax({
+        type: 'PUT',
+        url: `/updateTip/${tipid}`,
+        data: {
+            text: document.getElementById('ta' + tipid).value,
+            //user_id: userid,
+            recipe_id: recipeid
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            let id = response.tip;
+            //window.location.href = `/recipe/${recipeid}#ta` + id;
+            //location.reload();
             window.location.href = `/recipe/${recipeid}`;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}*/
+            alert("Upravili ste svoj príspevok");
+            //window.location.href = `/recipe/${recipeid}#poznamkyContainer`;
+
+        },
+        error: function (error) {
+            console.error('Error :', error);
+            alert("Niečo sa pokazilo. Skúste prosím znova.");
+        }
+    });
+}

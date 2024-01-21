@@ -17,7 +17,6 @@
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary shadowCard" style="background-image: url('{{ asset('images/cuisine.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="col-md-10 p-lg-5 mx-auto my-5">
             <h1 class="display-1 fw-bold">Recepty zo všetkých kútov sveta</h1>
-            {{--<h3 class="fw-normal text-muted mb-3">Nechajte sa inšpirovať</h3>--}}
         </div>
         <div class="product-device shadow-sm d-none d-md-block"></div>
         <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

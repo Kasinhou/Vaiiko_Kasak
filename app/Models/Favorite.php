@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+//oblubene, like
 class Favorite extends Model
 {
     use HasFactory;
@@ -14,6 +15,7 @@ class Favorite extends Model
 
     protected $fillable = ['user_id', 'recipe_id'];
 
+    //zistenie akemu receptu patri lajk
     public function recipe()
     {
         return $this->belongsTo(Recipe::class);

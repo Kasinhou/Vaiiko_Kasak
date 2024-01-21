@@ -23,9 +23,8 @@
 
 </body>
 </html>
-
-
 <script>
+    //zobrazenie a nacitanie receptov ktore patria aktualne prihlasenemu pouzivatelovi
     document.addEventListener('DOMContentLoaded', function () {
         let cardContainer = document.getElementById('myContainer');
         let baseUrl = cardContainer.dataset.baseUrl;
@@ -86,6 +85,7 @@
             .catch(error => console.error('Error:', error));
     });
 
+    //mazanie receptu na reakciu kliknutia tlacidla VYMAZAT
     function deleteRecipe(button) {
         if (!confirm("Naozaj si praješ vymazať recept?")) {
             return;

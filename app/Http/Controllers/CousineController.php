@@ -13,6 +13,7 @@ class CousineController extends Controller
         $this->middleware('auth');
     }
 
+    //vsetky kuchyn
     public function getCousines()
     {
         $cousines = Cousine::all();

@@ -20,6 +20,7 @@ class TipController extends Controller
         return view('single_recipe', compact('tip'));
     }*/
 
+    //diskusne tipu konkretneho receptu
     public function showRecipeTips($recipe_id)
     {
         $tips = Tip::where('recipe_id', $recipe_id)->with('author')->get();
@@ -27,6 +28,7 @@ class TipController extends Controller
         return response()->json(['tips' => $tips]);
     }
 
+    //insert tipu do db
     public function insertTip(Request $request)
     {
         //echo $request;
@@ -46,6 +48,7 @@ class TipController extends Controller
         return response()->json(['success'=>'Ďakujeme za zdieľanie názoru.']);
     }
 
+    //update tipu v db
     public function updateTip(Request $request, $tip_id) {
         $request->validate([
             'text'=>'required|string',
@@ -62,6 +65,7 @@ class TipController extends Controller
         return response()->json(['success'=>'Uspesne upravene.']);
     }
 
+    //delete tipu z db
     public function deleteTip($tip_id) {
         Tip::find($tip_id)->delete();
         return response()->json(['success'=>'Príspevok vymazaný.']);

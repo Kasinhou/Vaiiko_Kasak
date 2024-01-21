@@ -14,6 +14,7 @@ class FavoriteController extends Controller
         $this->middleware('auth');
     }
 
+    //insert oblubeneho do db
     public function saveFavorite(Request $request) {
         $request->validate([
             'recipe_id'=>'required|integer'
@@ -27,6 +28,7 @@ class FavoriteController extends Controller
         return response()->json(['success' => 'Pridane do oblubenych.']);
     }
 
+    //delete oblubeneho do db
     public function deleteFavorite($recipe_id) {
         $user = Auth::id();
         Favorite::where('recipe_id', $recipe_id)
@@ -34,11 +36,12 @@ class FavoriteController extends Controller
                 ->delete();
     }
 
+    //oblubene receptu prihlaseneho uzivatela
     public function getMyFavorites() {
         $user = Auth::id();
         $favorites = Favorite::with('recipe')->where('user_id', $user)->get();
 
-        //tofo
+        //to do
         return response()->json(['favorites' => $favorites]);
     }
 }

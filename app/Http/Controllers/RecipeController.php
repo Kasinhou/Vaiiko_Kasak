@@ -17,7 +17,6 @@ class RecipeController extends Controller
         $this->middleware('auth');
     }*/
 
-    //vsetky recepty zoberie a
     function index() {
         $recipes = Recipe::all();
 
@@ -25,6 +24,7 @@ class RecipeController extends Controller
         //return view('add_recipe');
     }
 
+    //recepty ku konkretnej kuchyni
     public function getCousinesRecipes($cousine_id)
     {
         $cousine = Cousine::find($cousine_id);
@@ -41,6 +41,7 @@ class RecipeController extends Controller
         return response()->json(['recipes' => $recipes]);
     }
 
+    //moje recepty spolus poctom oblubenych
     public function showMyRecipes() {
         $user_id = Auth::id();
         $recipes = Recipe::where('user_id', $user_id)->get();
@@ -52,6 +53,7 @@ class RecipeController extends Controller
         return response()->json(['recipes' => $recipes]);
     }
 
+    //info o tom ci je recept oblubeny
     public function getRecipe($recipe_id) {
         $recipe = Recipe::find($recipe_id);
         $user = $recipe->author();
@@ -66,6 +68,7 @@ class RecipeController extends Controller
         return view('my_recipes');
     }*/
 
+    //spracovanie a vratenie co sa ma ulozit do stlpca na obrazky
     public function saveImg(Request $request) {
         if ($request->hasFile('imgpath')) {
         //if ($file && $file->isValid()) {
@@ -79,6 +82,7 @@ class RecipeController extends Controller
         }
     }
 
+    //insert receptu do tabulky
     public function addRecipe(Request $request)
     {
         //return $request->input();
@@ -114,6 +118,7 @@ class RecipeController extends Controller
         }
     }
 
+    //poslanie info o recepte a kuchyniach kvoli uprave receptu
     public function editRecipe($recipe_id) {
         $recipe = Recipe::find($recipe_id);
         $cousines = Cousine::all();
@@ -121,6 +126,7 @@ class RecipeController extends Controller
         return view('edit_recipe', compact('recipe', 'cousines'));
     }
 
+    //aktualizacia obrazku
     public function updateImg(Request $request, $recipe) {
         if ($request->hasFile('imgpath')) {
             //echo "Tuto to je";
@@ -134,6 +140,7 @@ class RecipeController extends Controller
         }
     }
 
+    //update receptu v databaze
     public function update(Request $request, $recipe_id) {
         $request->validate([
             'name'=>'required|string|max:100',
@@ -170,11 +177,13 @@ class RecipeController extends Controller
         }
     }
 
+    //delete receptu v db
     public function deleteRecipe($recipe_id) {
         Recipe::find($recipe_id)->delete();
         return response()->json(['success'=>'Recept bol úspešne zmazaný.']);
     }
 
+    //poskytnutie receptov ktore obsahuju zadany vyraz
     public function searching(Request $request) {
         $expression = $request->input('search');
 

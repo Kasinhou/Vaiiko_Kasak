@@ -25,14 +25,14 @@
         <div class="container ">
             <div class="row g-4">
                 <div class="col image-container">
-                    <img class="cousine-img" src="{{ asset('images/'.$cousine->img_path) }}" alt="obrazok podla typu">
+                    <img class="cousine-img" src="{{ asset('images/cousines/'.$cousine->img_path) }}" alt="obrazok podla typu">
                 </div>
                 <div class="col">
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                    Niečo málo o type jedla
+                                    Niečo málo o kuchyni
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse accordion-info">
@@ -71,6 +71,7 @@
         //definovana cesta k obrazkom
         let baseUrl = cardContainer.dataset.baseUrl;
 
+        //nacitania a zobrazenie receptov konkretnych kuchyn
         fetch(`/getRecipesCards/${cousineID}`)
             .then(response => response.json())
             .then(data => { //prejde vsetky
@@ -106,7 +107,7 @@
 
                         cardContainer.appendChild(divElement);
                     });
-                    //neviem ci toto bude fungovat,
+                    //presmerovanie na konkretne recepty
                     cardContainer.addEventListener('click', function (event) {
                         if (event.target.classList.contains('recipelink')) {
                             event.preventDefault();

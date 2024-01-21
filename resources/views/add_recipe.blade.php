@@ -84,7 +84,7 @@
                 @endif
 
                 <div class="form-group">
-                    <label for="exampleInputType">Typ jedla (večera/vegánske/dezert/...)</label>
+                    <label for="exampleInputType">Typ jedla</label>
                     <input type="text" name="type" class="form-control shadowInput" placeholder="Typ" value="{{ old('type') }}">
                     <span style="color:red">@error('type'){{ $message }} @enderror</span>
                 </div>

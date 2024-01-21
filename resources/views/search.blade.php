@@ -14,7 +14,7 @@
 @include('navbar')
 
 <main>
-    <h3 class="vpravo-zarovnanie bold">Nájdené recepty</h3><br>
+    <h3 class="vpravo-zarovnanie bold">Nájdené výsledky</h3><br>
     <div id="searched" class="row g-2 px-2">
 
     @if($recipes->isNotEmpty())
