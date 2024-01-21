@@ -139,6 +139,10 @@
     height: 10vh;
 }
 
+.infocardfav {
+    height: 20vh;
+}
+
 .likes {
     text-decoration: none;
     color: red;
@@ -307,4 +311,33 @@ footer {
     display: none;
 }
 
-/*styl v */
+/*styl v info.blade*/
+.info-main {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.info1 {
+    width: 80%;
+    height: 100%;
+    border-radius: 21px 21px 0 0;
+}
+.info-border {
+    border-radius: 21px 21px 0 0;
+}
+.info-xy {
+    width: 80%;
+    height: 80%;
+}
+.info-p {
+    color: white;
+    margin: auto;
+}
+.info-height {
+    height: 500px;
+}
+.info-tb {
+    font-size: 22px;
+    color: black;
+    margin: auto;
+}

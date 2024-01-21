@@ -39,7 +39,7 @@
                         divElement.innerHTML = `
                             <div class="card shadowCard">
                                 <div class="card-body">
-                                    <h5 class="card-title bold infocard text-center">${favorite.recipe.name}</h5>
+                                    <h5 class="card-title bold infocardfav text-center">${favorite.recipe.name}</h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><i class="bi bi-clock-history"></i> ${timeCheck}</li>
