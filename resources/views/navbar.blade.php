@@ -94,10 +94,10 @@
                         </li>
 
                         <li>
-                            <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="btn text-white btn-hover" href="/info">
                                 <span class="d-inline-block bg-secondary rounded-circle p-1"></span>
                                 O nás
-                            </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
