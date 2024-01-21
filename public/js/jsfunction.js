@@ -36,7 +36,7 @@ function toggleHeartAnimation(button) {
     let isClickedAlready = button.classList.contains('heartBeat');
     let recipeid = document.getElementById('rid').dataset.recipeid;
 
-    //prida triedu ktoru treba
+    //prida triedu ktoru treba na zaklade podmienky
     if (!isClickedAlready) {
         //kod na pridanie do db
         $.ajax({
@@ -92,11 +92,9 @@ function pridajTip() {
     if (nazor.trim() !== "") {
         let notes = document.getElementById('poznamkyContainer');
         let divElement = document.createElement('div');
-        //let userName = document.getElementById('authorInfo').dataset.username;
         let userName = document.getElementById('poznamkyContainer').dataset.username;
         //let userid = document.getElementById('authorInfo').dataset.userid;
         //console.log(notes, " ", userid, " ", recipeid);
-        //alert(nazor + " " + userid  + " " + recipeid);
 
         $.ajax({
             type: 'POST',
@@ -130,7 +128,10 @@ function pridajTip() {
 
                 document.getElementById('nazor').value = "";
                 //todo
-                window.location.href = `/recipe/${recipeid}`;
+                //window.location.href = `/recipe/${recipeid}`;
+                window.location.href = `/recipe/${recipeid}#poznamkyContainer`;
+                //window.location.href = `/recipe/${recipeid}#ta${tipid}`;
+                location.reload();
 
             },
             error: function (error) {
@@ -140,7 +141,7 @@ function pridajTip() {
         });
 
     } else {
-        alert("Nezdieľate svoj názor.");
+        alert("Nie je možné odoslať prázdnu poznámku.");
     }
 }
 

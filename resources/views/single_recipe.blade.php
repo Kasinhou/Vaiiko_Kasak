@@ -29,25 +29,29 @@
                     <i class="bi bi-person-add"></i> {{ optional($recipe->author)->name }}</div>
                 <div><i class="bi bi-calendar3"></i> {{ $recipe->getDate() }}</div>
                 <br>
-                <div class="row">
-                    <div class="col-3">
+               {{-- <div class="row">
+                    <div class="col-3">--}}
                         <div><i class="bi bi-clock-history"></i> {{ $recipe->getTime() }}</div>
                         <div><i class="bi bi-question-circle"></i> {{ $recipe->difficulty }}</div>
                         <div><i class="bi bi-globe-americas"></i> {{ $recipe->origin }}</div><br>
-                    </div>
-                    <div class="col-9">
+                    {{--</div>
+                    <div class="col-9">--}}
                         <div><i class="bi bi-info-circle"></i> {{ $recipe->info }}</div>
                         <div><i class="bi bi-code"></i> {{ $recipe->type }}</div>
+                    {{--</div>--}}
+                {{--</div>--}}
+            </div>
+                {{--<h5 class="bold"><i class="bi bi-list-task"></i> Ingrediencie</h5>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                    <p class="ingrediencie">
+                        {!! nl2br(str_replace(" ", " &nbsp;", $recipe->ingredients)) !!}
+                    </p>
                     </div>
                 </div>
+                <br>--}}
 
-                <h5 class="bold"><i class="bi bi-list-task"></i> Ingrediencie</h5>
-                <p class="ingrediencie">
-                    {!! nl2br(str_replace(" ", " &nbsp;", $recipe->ingredients)) !!}
-                </p>
-                <br>
 
-            </div>
             <div class="col-12 col-lg-6">
                 @if($recipe->imgpath)
                     <br><img class="image-container img-fluid img-recept" src="{{ asset('uploads/recipe/' . $recipe->imgpath) }}" alt="nahlad receptu">
@@ -64,12 +68,24 @@
             </button>
         @endif<br><hr>
 
-        <div class="col">
-            <h5 class="bold"><i class="bi bi-list-columns-reverse"></i> Postup prípravy</h5>
-        </div>
 
-        <div class="col-11">
-            <p class="steps">{!! nl2br(str_replace(" ", " &nbsp;", $recipe->steps)) !!}<br></p>
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <h5 class="bold"><i class="bi bi-list-task"></i> Ingrediencie</h5>
+                <p class="ingrediencie">
+                    {!! nl2br(str_replace(" ", " &nbsp;", $recipe->ingredients)) !!}
+                </p>
+                <br>
+            </div>
+            <div class="col-12 col-lg-8">
+            {{--<div class="col">--}}
+                <h5 class="bold"><i class="bi bi-list-columns-reverse"></i> Postup prípravy</h5>
+            {{--</div>--}}
+
+            {{--<div class="col-11">--}}
+                <p class="steps">{!! nl2br(str_replace(" ", " &nbsp;", $recipe->steps)) !!}<br></p>
+            {{--</div>--}}
+            </div>
         </div>
         <hr>
         <div>
@@ -96,21 +112,21 @@
     document.addEventListener('DOMContentLoaded', function () {
         let poznamky = document.getElementById('poznamkyContainer');
         let currUser = document.getElementById('poznamkyContainer').dataset.userid;
-        console.log("current id user ", currUser);
+        //console.log("current id user ", currUser);
         let recipeId = document.getElementById('rid').dataset.recipeid;
-        console.log("111111111111111");
+        //console.log("111111111111111");
 
         fetch(`/getRecipeTips/${recipeId}`)
             .then(response => response.json())
             .then(data => {
-                console.log("222222222");
+                //console.log("222222222");
                 if (data.tips.length > 0) { //ak uz su nejake
                     data.tips.forEach(tip => {
                         let divElement = document.createElement('div');
                         divElement.className = "row";
                         //let tipByWho = tip.user_id;
 
-                        console.log("333333333333");
+                        //console.log("333333333333");
                         divElement.innerHTML = `
                             <div class="col-8 col-lg-10">
                                 <p>${tip.author.name}: ${tip.text}</p>
@@ -148,8 +164,14 @@
     }
 
     function upravTip(button) {
+        //event.preventDefault();
+
         let tipid = button.getAttribute('data-tipid');
         let recipeid = button.getAttribute('data-recipeid');
+        if (document.getElementById('ta' + tipid).value.trim() === "") {
+            alert("Nie je možné zdieľať prázdny názor.");
+            return;
+        }
         $.ajax({
             type: 'PUT',
             url: `/updateTip/${tipid}`,
@@ -162,9 +184,13 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (response) {
-                let tipid = response.tip;
-                console.log("som tuuu a asi to ide");
+                let id = response.tip;
+                //console.log("som tuuu a asi to ide");
+                //window.location.href = `/recipe/${recipeid}#ta` + id;
+               // location.reload();
                 window.location.href = `/recipe/${recipeid}`;
+                alert("Upravene");
+                //window.location.href = `/recipe/${recipeid}#poznamkyContainer`;
 
             },
             error: function (error) {

@@ -26,7 +26,7 @@ Route::get('/home', function () { return view('home'); });
 Route::get('/my_recipes', function () { return view('my_recipes'); });
 Route::get('/favorites', function () { return view('favorites'); });
 
-Route::get('/recipe', function () { return view('single_recipe'); });
+//Route::get('/recipe', function () { return view('single_recipe'); });
 
 Route::get('/login', function () { return view('login'); });
 

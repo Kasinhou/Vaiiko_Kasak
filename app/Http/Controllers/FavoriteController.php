@@ -16,7 +16,7 @@ class FavoriteController extends Controller
 
     public function saveFavorite(Request $request) {
         $request->validate([
-            'recipe_id'=>'required'
+            'recipe_id'=>'required|integer'
         ]);
 
         Favorite::create([

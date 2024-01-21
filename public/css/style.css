@@ -69,15 +69,29 @@
     margin: 2px;
     opacity: 0.6;
     transition: 0.3s;
+    color: darkred;
 }
 .btn-hover:hover {opacity: 1}
 
 .ingrediencie {
-    border-left: 1px solid black;
+    //border-left: 1px solid black;
+    box-shadow: 5px 5px 10px #1a202c;
     padding: 10px;
     border-radius: 5px;
     font-style: italic;
 }
+
+.shadowCard {
+    box-shadow: 20px 20px 50px black;
+}
+
+.shadowInput {
+    box-shadow: 2px 2px 5px black;
+}
+
+/*.shadowText {
+    filter: drop-shadow(20px 20px 50px black);
+}*/
 
 .steps {
     border-left: 3px dashed black;
@@ -217,7 +231,7 @@ html, body {
 }
 
 .recipelink:hover {
-    color: firebrick;
+    color: darkslategray;
 }
 
 @media screen and (max-width: 900px) {

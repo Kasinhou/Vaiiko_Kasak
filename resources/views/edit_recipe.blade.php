@@ -43,30 +43,30 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="exampleInputName">Názov receptu</label>
-                    <input type="text" name="name" class="form-control" placeholder="Názov" value="{{ old('name', $recipe->name) }}">
+                    <input type="text" name="name" class="form-control shadowInput" placeholder="Názov" value="{{ old('name', $recipe->name) }}">
                     <span style="color:red">@error('name'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputInfo">Stručný popis</label>
-                    <input type="text" name="info" class="form-control" placeholder="Info" value="{{ old('info', $recipe->info) }}">
+                    <input type="text" name="info" class="form-control shadowInput" placeholder="Info" value="{{ old('info', $recipe->info) }}">
                     <span style="color:red">@error('info'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputTime">Čas prípravy</label>
-                    <input type="text" name="time" class="form-control" placeholder="Minúty" value="{{ old('time', $recipe->time) }}">
+                    <input type="text" name="time" class="form-control shadowInput" placeholder="Minúty" value="{{ old('time', $recipe->time) }}">
                     <span style="color:red">@error('time'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputOrigin">Pôvod receptu</label>
-                    <input type="text" name="origin" class="form-control" placeholder="Pôvod" value="{{ old('origin', $recipe->origin) }}">
+                    <input type="text" name="origin" class="form-control shadowInput" placeholder="Pôvod" value="{{ old('origin', $recipe->origin) }}">
                     <span style="color:red">@error('origin'){{ $message }} @enderror</span>
                 </div>
 
                 <label for="exampleInputName">Vyberte obtiažnosť</label>
-                <select class="custom-select" name="difficulty">
+                <select class="custom-select shadowInput" name="difficulty">
                     <option selected value="začiatočník" @if(old('difficulty', $recipe->difficulty) == 'začiatočník') selected @endif>Začiatočník</option>
                     <option value="pokročilý" @if(old('difficulty', $recipe->difficulty) == 'pokročilý') selected @endif>Pokročilý</option>
                     <option value="masterchef" @if(old('difficulty', $recipe->difficulty) == 'masterchef') selected @endif>Masterchef</option>
@@ -74,7 +74,7 @@
 
                 @if(isset($cousines))
                     <label for="exampleInputName">Kuchyňa</label>
-                    <select class="custom-select" name="cousine_id">
+                    <select class="custom-select shadowInput" name="cousine_id">
                         @foreach($cousines as $cousine)
                             <option value="{{ $cousine->id }}" @if(old('cousine_id', $recipe->cousine_id) == $cousine->id) selected @endif>
                                 {{ $cousine->name }}
@@ -87,7 +87,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputType">Typ jedla</label>
-                    <input type="text" name="type" class="form-control" placeholder="Typ" value="{{ old('type', $recipe->type) }}">
+                    <input type="text" name="type" class="form-control shadowInput" placeholder="Typ" value="{{ old('type', $recipe->type) }}">
                     <span style="color:red">@error('type'){{ $message }} @enderror</span>
                 </div>
 
@@ -100,24 +100,24 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Ingrediencie</label>
-                    <textarea class="form-control" name="ingredients" rows="5">{{ old('ingredients', $recipe->ingredients) }}</textarea>
+                    <textarea class="form-control shadowInput" name="ingredients" rows="5">{{ old('ingredients', $recipe->ingredients) }}</textarea>
                     <span style="color:red">@error('ingredients'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Postup</label>
-                    <textarea class="form-control" name="steps" rows="10">{{ old('steps', $recipe->steps) }}</textarea>
+                    <textarea class="form-control shadowInput" name="steps" rows="10">{{ old('steps', $recipe->steps) }}</textarea>
                     <span style="color:red">@error('steps'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Dodatočné poznámky</label>
-                    <textarea class="form-control" name="addinfo" rows="3">{{ old('addinfo', $recipe->addinfo) }}</textarea>
+                    <textarea class="form-control shadowInput" name="addinfo" rows="3">{{ old('addinfo', $recipe->addinfo) }}</textarea>
                 </div>
 
                 <br>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block w-100">Uprav</button>
+                    <button type="submit" class="btn btn-primary btn-block w-100 shadowInput">Uprav</button>
                 </div>
             </form>
         </div>

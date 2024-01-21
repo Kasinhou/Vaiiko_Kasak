@@ -15,15 +15,15 @@
 
 <main>
     <h3 class="vpravo-zarovnanie bold">Nájdené recepty</h3><br>
-    <div id="searched" class="row g-2">
+    <div id="searched" class="row g-2 px-2">
 
     @if($recipes->isNotEmpty())
         @foreach ($recipes as $recipe)
             <div class="col-12 col-md-6 col-lg-3">
-                <div class="card">
+                <div class="card shadowCard">
                     <div class="card-body">
                         <h5 class="card-title bold infocard text-center">{{ $recipe->name }}</h5>
-                        <p class="card-text italic infocard">{{ $recipe->info }}</p>
+                        <p class="card-text italic infocard text-center">{{ $recipe->info }}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> {{ $recipe->cousine->name }} kuchyňa</li>

@@ -32,13 +32,12 @@
                 if (data.favorites.length > 0) { //ci ma nejake oblubene
                     data.favorites.forEach(favorite => {
                         let divElement = document.createElement('div');
-                        divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-2';
-                        //TODO osetrit vstupy
+                        divElement.className = 'col-12 col-sm-6 col-md-3 col-lg-2';
                         let timeCheck = favorite.recipe.time ? favorite.recipe.time : "";
                         let originCheck = favorite.recipe.origin ? favorite.recipe.origin : "";
 
                         divElement.innerHTML = `
-                            <div class="card">
+                            <div class="card shadowCard">
                                 <div class="card-body">
                                     <h5 class="card-title bold infocard text-center">${favorite.recipe.name}</h5>
                                 </div>
@@ -48,7 +47,7 @@
                                     <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${originCheck}</li>
                                 </ul>
                                 <div class="card-body d-flex justify-content-between align-items-end">
-                                    <a href="#" data-recipe-id="${favorite.recipe.id}" class="recipelink bold">Celý recept</a>
+                                    <a href="#" data-recipe-id="${favorite.recipe.id}" class="recipelink bold">Celý recept...</a>
                                     <a class="btn btn-sm btn-outline-secondary heartBeat">
                                         <i class="bi bi-heart"></i>
                                     </a>

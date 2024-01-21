@@ -16,13 +16,10 @@
 
 <!--obrazok kuchyne plus informacie o nom-->
 <main>
-
     <div>
         <div>
-
             <h1 class="vpravo-zarovnanie-nazov bold">{{ $cousine->name }} kuchyňa</h1>
             <br>
-
         </div>
 
         <div class="container ">
@@ -80,7 +77,6 @@
                 if (data.recipes.length > 0) { //ci su nejake
                     data.recipes.forEach(recipe => {
                         let divElement = document.createElement('div');
-                        //divElement.className = 'col-12 col-lg-6';
                         divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
                         let infoCheck = recipe.info ? recipe.info : "";
                         let timeCheck = recipe.time ? recipe.time : "";
@@ -89,12 +85,12 @@
                         //let image = recipe.imgpath ? recipe.imgpath : "";
 
                         divElement.innerHTML = `
-                            <div class="card">
+                            <div class="card shadowCard">
                                 ${recipe.imgpath ? `<img src="${baseUrl}/${recipe.imgpath}" class="card-img-top cardimage">` : `<img src="{{ asset('images/nophoto.jpg') }}" class="card-img-top cardimage">`}
 
                                 <div class="card-body">
                                     <h5 class="card-title bold infocard text-center">${recipe.name}</h5>
-                                    <p class="card-text italic infocard">${infoCheck}</p>
+                                    <p class="card-text italic infocard text-center">${infoCheck}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><i class="bi bi-clock-history"></i> ${timeCheck}</li>

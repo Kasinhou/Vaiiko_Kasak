@@ -42,7 +42,7 @@
                         //let likes = recipe.getLikes();
 
                         divElement.innerHTML = `
-                            <div class="card mx-4">
+                            <div class="card mx-4 shadowCard">
                                 <div class="row g-0">
                                     <div class="col-md-11">
                                         <div class="card-body">
@@ -87,7 +87,6 @@
     });
 
     function deleteRecipe(button) {
-        //let check = confirm("Naozaj si praješ vymazať recept?");
         if (!confirm("Naozaj si praješ vymazať recept?")) {
             return;
         }

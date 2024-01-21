@@ -31,9 +31,9 @@ class TipController extends Controller
     {
         //echo $request;
         $request->validate([
-            'text'=>'required',
+            'text'=>'required|string',
             //'user_id'=>'required',
-            'recipe_id'=>'required'
+            'recipe_id'=>'required|integer'
         ]);
 
         Tip::create([
@@ -48,8 +48,8 @@ class TipController extends Controller
 
     public function updateTip(Request $request, $tip_id) {
         $request->validate([
-            'text'=>'required',
-            'recipe_id'=>'required'
+            'text'=>'required|string',
+            'recipe_id'=>'required|integer'
         ]);
 
         $tip = Tip::find($tip_id);
