@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
 {
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
 
     //vsetky recepty zoberie a
     function index() {
@@ -83,7 +83,11 @@ class RecipeController extends Controller
     {
         //return $request->input();
         $request->validate([
-            'name'=>'required|string',
+            'name'=>'required|string|max:100',
+            'info'=>'nullable|max:80',
+            'time'=>'nullable|max:20',
+            'origin'=>'nullable|string|max:100',
+            'type'=>'nullable|string|max:100',
             'ingredients'=>'required',
             'steps'=>'required'
         ]);
@@ -132,7 +136,11 @@ class RecipeController extends Controller
 
     public function update(Request $request, $recipe_id) {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|string|max:100',
+            'info'=>'nullable|max:80',
+            'time'=>'nullable|max:20',
+            'origin'=>'nullable|string|max:100',
+            'type'=>'nullable|string|max:100',
             'ingredients'=>'required',
             'steps'=>'required'
         ]);
@@ -176,5 +184,4 @@ class RecipeController extends Controller
 
         return view('search', compact('recipes'));
     }
-
 }

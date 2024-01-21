@@ -50,16 +50,19 @@
                 <div class="form-group">
                     <label for="exampleInputInfo">Stručný popis</label>
                     <input type="text" name="info" class="form-control" placeholder="Info" value="{{ old('info', $recipe->info) }}">
+                    <span style="color:red">@error('info'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputTime">Čas prípravy</label>
                     <input type="text" name="time" class="form-control" placeholder="Minúty" value="{{ old('time', $recipe->time) }}">
+                    <span style="color:red">@error('time'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputOrigin">Pôvod receptu</label>
                     <input type="text" name="origin" class="form-control" placeholder="Pôvod" value="{{ old('origin', $recipe->origin) }}">
+                    <span style="color:red">@error('origin'){{ $message }} @enderror</span>
                 </div>
 
                 <label for="exampleInputName">Vyberte obtiažnosť</label>
@@ -85,6 +88,7 @@
                 <div class="form-group">
                     <label for="exampleInputType">Typ jedla</label>
                     <input type="text" name="type" class="form-control" placeholder="Typ" value="{{ old('type', $recipe->type) }}">
+                    <span style="color:red">@error('type'){{ $message }} @enderror</span>
                 </div>
 
                 <div class="input-group">

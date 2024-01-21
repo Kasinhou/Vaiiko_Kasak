@@ -16,10 +16,13 @@
 
 <!--obrazok kuchyne plus informacie o nom-->
 <main>
+
     <div>
         <div>
+
             <h1 class="vpravo-zarovnanie-nazov bold">{{ $cousine->name }} kuchyňa</h1>
             <br>
+
         </div>
 
         <div class="container ">

@@ -15,7 +15,7 @@
 
 <main>
     <h3 class="vpravo-zarovnanie bold">Obľúbené</h3><br>
-    <div id="favContainer" class="row g-2 mt-2"></div>
+    <div id="favContainer" class="row g-2 mt-2 px-2"></div>
 
 </main>
 
@@ -34,7 +34,8 @@
                         let divElement = document.createElement('div');
                         divElement.className = 'col-12 col-sm-6 col-md-4 col-lg-2';
                         //TODO osetrit vstupy
-                        //let favoriteId = favorite.id;
+                        let timeCheck = favorite.recipe.time ? favorite.recipe.time : "";
+                        let originCheck = favorite.recipe.origin ? favorite.recipe.origin : "";
 
                         divElement.innerHTML = `
                             <div class="card">
@@ -42,9 +43,9 @@
                                     <h5 class="card-title bold infocard text-center">${favorite.recipe.name}</h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> ${favorite.recipe.time}</li>
+                                    <li class="list-group-item"><i class="bi bi-clock-history"></i> ${timeCheck}</li>
                                     <li class="list-group-item italic"><i class="bi bi-question-circle"></i> ${favorite.recipe.difficulty}</li>
-                                    <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${favorite.recipe.origin}</li>
+                                    <li class="list-group-item italic"><i class="bi bi-globe-americas"></i> ${originCheck}</li>
                                 </ul>
                                 <div class="card-body d-flex justify-content-between align-items-end">
                                     <a href="#" data-recipe-id="${favorite.recipe.id}" class="recipelink bold">Celý recept</a>

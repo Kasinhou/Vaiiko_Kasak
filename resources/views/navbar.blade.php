@@ -30,8 +30,8 @@
                         <i class="bi bi-person-circle"></i>
                     </a>
                     <ul class="dropdown-menu text-small shadow">
-                        <li><a class="dropdown-item" href="login">Prihlásiť sa</a></li>
-                        <li><a class="dropdown-item" href="register">Registrovať sa</a></li>
+                        <li><a class="dropdown-item" href="/login">Prihlásiť sa</a></li>
+                        <li><a class="dropdown-item" href="/register">Registrovať sa</a></li>
                     </ul>
                 @endauth
             @endif
@@ -45,6 +45,7 @@
 
             <div class="offcanvas-body">
                 <div>
+                    @auth
                     <div class="position-static border-0 pt-0 mx-0 rounded-3 overflow-hidden" data-bs-theme="dark">
                         <form class="p-2 mb-2 bg-dark border-bottom border-dark" action="{{ route('search') }}" method="GET">
                             <label>
@@ -52,6 +53,7 @@
                             </label>
                         </form>
                     </div>
+                    @endauth
                 </div>
 
                 <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
@@ -70,7 +72,7 @@
                                 </ul>
                             @endif
                         </li>
-                        {{--@auth--}}
+                        @auth
                             <li>
                                 <a class="btn text-white btn-hover" href="/favorites">
                                     <span class="d-inline-block bg-danger rounded-circle p-1"></span>
@@ -82,10 +84,15 @@
                                     <span class="d-inline-block bg-warning rounded-circle p-1"></span>
                                     Moje recepty
                                 </a>
-                                {{--<button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>--}}
                             </li>
-                        {{--@endauth--}}
+                        @endauth
+                        <li>
+                            <a class="btn text-white btn-hover" href="/add">
+                                <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                                Pridať recept
+                            </a>
+                        </li>
+
                         <li>
                             <button type="button" class="btn text-white btn-hover" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="d-inline-block bg-secondary rounded-circle p-1"></span>
